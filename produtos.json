@@ -3,13 +3,19 @@
 		{
 			"Nome": "feijao",
 			"Quantidade": 2,
-			"Marca": "2",
-			"id": 2
+			"Marca": "tio",
+			"id": 0
 		},
 		{
 			"Nome": "arroz",
-			"Quantidade": 2,
-			"Marca": "2",
+			"Quantidade": 4,
+			"Marca": "namorado",
+			"id": 1
+		},	
+		{
+			"Nome": "carne",
+			"Quantidade": 6,
+			"Marca": "seara",
 			"id": 2
 		}	
 	]

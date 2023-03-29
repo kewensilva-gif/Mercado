@@ -1,6 +1,7 @@
 #include <iostream>
 #include "biblioteca.h"
 #include <fstream>;
+#include <string.h>
 using namespace std;
 
 void pegaDados(string& nome, int& quant, string& marca, int& id){
@@ -139,6 +140,49 @@ inserirNovoProduto(string nome, int quant, string marca, int id){
 
 }
 
+void removerProdutoJson(){
+    fstream produtos;
+    string linha, aux, aux2;
+    int cont = 0, cont2 = 0, len;
+    produtos.open("produtos.json", ios::in);
+
+    if(produtos.is_open()){
+        while(getline(produtos, linha)){
+            cont++;
+        }
+        cout << cont<<endl;
+
+    } else {
+        cout << "Não foi possível abri o arquivo" << endl;
+    }
+
+    produtos.close();
+
+    produtos.open("produtos.json", ios::in);
+
+    if(produtos.is_open()){
+        while(getline(produtos, linha)){
+            cont2++;
+            if(cont-3 == cont2){
+                aux = linha;
+                len = strlen(linha.c_str());
+            }
+        }
+
+    } else {
+        cout << "Não foi possível abri o arquivo" << endl;
+    }
+
+    for(int i = 0; i < len; i++){
+        if(i == len-2 || i == len-1){
+            aux2 += aux[i];
+        }
+    }
+    int res;
+    res = stoi(aux2);
+    cout << "REsultado" << res+res << endl;
+}
+
 int main()
 {
     int op, posicao = 0, pos, quant, id;
@@ -164,9 +208,10 @@ int main()
             break;
 
         case 3:
-            cout << "Digite o id do produto: ";
-            cin >> pos;
-            removerProduto(produtos, pos);
+            //cout << "Digite o id do produto: ";
+            //cin >> pos;
+            removerProdutoJson();
+            //removerProduto(produtos, pos);
             break;
 
         case 4:
