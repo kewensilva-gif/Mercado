@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1680115682 source:d:\trabalho-prog2\mercado\main.cpp
+	<iostream>
+	"biblioteca.h"
+	<fstream>
+
+1680111903 d:\trabalho-prog2\mercado\biblioteca.h
+	<iostream>
+
