@@ -11,3 +11,28 @@ Marca: coca
 Nome: coca
 Quantidade: 3
 Marca: cola
+**Produto**
+Nome: feijao
+Quantidade: 3
+Marca: coca
+id: 3
+**Produto**
+Nome: nome
+Quantidade: 3
+Marca: coca
+id: 3
+**Produto**
+Nome: feijao
+Quantidade: 3
+Marca: coca
+id: 5
+**Produto**
+Nome: feijao
+Quantidade: 3
+Marca: coca
+id: 3
+**Produto**
+Nome: arroz
+Quantidade: 5
+Marca: tio
+id: 7

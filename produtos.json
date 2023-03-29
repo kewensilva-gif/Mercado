@@ -1,0 +1,22 @@
+{
+	"produtos": [ 
+		{
+			"Nome": "feijao",
+			"Quantidade": 2,
+			"Marca": "coca",
+			"id": 3
+		},	
+		{
+			"Nome": "cocada",
+			"Quantidade": 4,
+			"Marca": "coca",
+			"id": 6
+		},	
+		{
+			"Nome": "teste",
+			"Quantidade": 6,
+			"Marca": "testando",
+			"id": 8
+		}	
+	]
+}
