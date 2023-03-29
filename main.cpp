@@ -3,25 +3,24 @@
 #include <fstream>;
 using namespace std;
 
-void insereProduto(){
-    char nome[30];
-    int quant;
-    char marca[30];
-    int id;
-    char opcao;
+void pegaDados(string& nome, int& quant, string& marca, int& id){
+    cout << "Digite o nome do produto: ";
+    cin >> nome;
+    cout << "Digite a quantidade: ";
+    cin >> quant;
+    cout << "Digite a marca: ";
+    cin >> marca;
+    cout << "Digite o id: ";
+    cin >> id;
+}
 
+void insereProduto(string& nome, int& quant, string& marca, int& id){
+    char opcao;
     ofstream produtos;
     produtos.open("produtos.txt", ios::app);
 
      do{
-        cout << "Digite o nome do produto: ";
-        cin >> nome;
-        cout << "Digite a quantidade: ";
-        cin >> quant;
-        cout << "Digite a marca: ";
-        cin >> marca;
-        cout << "Digite o id: ";
-        cin >> id;
+        pegaDados(nome, quant, marca, id);
 
         produtos << "**Produto**" << endl;
         produtos << "Nome: " << nome << endl;
@@ -66,46 +65,45 @@ void produtoJson(){
 
 }
 
-void criarListaJson(){
-    char nome[30];
-    int quant;
-    char marca[30];
-    int id;
+void criarListaJson(string nome, int quant, string marca, int id){
     int sair;
+    char continuar;
 
-    fstream produtos;
-    produtos.open("produtos.json", ios::app);
-    produtos << "{\n\t\"produtos\": [ " << endl;
-     do{
-        cout << "Digite o nome do produto: ";
-        cin >> nome;
-        cout << "Digite a quantidade: ";
-        cin >> quant;
-        cout << "Digite a marca: ";
-        cin >> marca;
-        cout << "Digite o id: ";
-        cin >> id;
+    cout << "Essa função irá sobrescrever tudo que há no arquivo.\nDeseja continuar? <s - n> ";
+    cin >> continuar;
 
-        produtos << "\t\t{" << endl;
-        produtos << "\t\t\t\"Nome\": \"" << nome << "\","<< endl;
-        produtos << "\t\t\t\"Quantidade\": " << quant << ","<< endl;
-        produtos << "\t\t\t\"Marca\": \"" << marca << "\","<< endl;
-        produtos << "\t\t\t\"id\": " << id << endl;
-        produtos << "\t\t}\t" << endl;
+    if(continuar == 's' || continuar == 'S'){
+        fstream produtos;
+        produtos.open("produtos.json", ios::out);
+        produtos << "{\n\t\"produtos\": [ " << endl;
+         do{
+            pegaDados(nome, quant, marca, id);
 
-        cout << "Digite 0 para sair: ";
-        cin >> sair;
-    } while(sair);
+            produtos << "\t\t{" << endl;
+            produtos << "\t\t\t\"Nome\": \"" << nome << "\","<< endl;
+            produtos << "\t\t\t\"Quantidade\": " << quant << ","<< endl;
+            produtos << "\t\t\t\"Marca\": \"" << marca << "\","<< endl;
+            produtos << "\t\t\t\"id\": " << id << endl;
 
-    produtos << "\t]\n}" << endl;
-    produtos.close();
+
+            cout << "Digite 0 para sair: ";
+            cin >> sair;
+
+
+            if(!sair){
+                produtos << "\t\t}\t" << endl;
+            } else {
+                produtos << "\t\t}," << endl;
+            }
+        } while(sair);
+
+        produtos << "\t]\n}" << endl;
+        produtos.close();
+    }
 }
 
-insereNovoProduto(){
-    char nome[30];
-    int quant;
-    char marca[30];
-    int id;
+inserirNovoProduto(string nome, int quant, string marca, int id){
+
     fstream produtos;
     string arquivo;
     string linha;
@@ -118,7 +116,6 @@ insereNovoProduto(){
             } else
                 arquivo += (linha + "\n");
         }
-    cout << arquivo << endl;
     } else {
         cout << "Não foi possivel abrir o arquivo" << endl;
     }
@@ -130,14 +127,7 @@ insereNovoProduto(){
     produtos << arquivo;
     produtos << "\t\t},\t" << endl;
     produtos << "\t\t{" << endl;
-    cout << "Digite o nome do produto: ";
-    cin >> nome;
-    cout << "Digite a quantidade: ";
-    cin >> quant;
-    cout << "Digite a marca: ";
-    cin >> marca;
-    cout << "Digite o id: ";
-    cin >> id;
+    pegaDados(nome, quant, marca, id);
     produtos << "\t\t\t\"Nome\": \"" << nome << "\","<< endl;
     produtos << "\t\t\t\"Quantidade\": " << quant << ","<< endl;
     produtos << "\t\t\t\"Marca\": \"" << marca << "\","<< endl;
@@ -151,7 +141,8 @@ insereNovoProduto(){
 
 int main()
 {
-    int op, posicao = 0, pos;
+    int op, posicao = 0, pos, quant, id;
+    string nome, marca;
 
     struct estoque produtos[100];
 
@@ -162,7 +153,7 @@ int main()
 
         case 1:
             //insereProduto();
-            criarListaJson();
+            criarListaJson(nome, quant, marca, id);
             //cadastrarProduto(produtos, posicao);
             break;
 
@@ -184,7 +175,7 @@ int main()
             adicionarQuant(produtos, pos);
             break;
         case 5:
-            insereNovoProduto();
+            inserirNovoProduto(nome, quant, marca, id);
             break;
         }
     } while(op);
