@@ -1,16 +1,19 @@
 #include <iostream>
 #include "biblioteca.h"
+#include "arquivoLib.h"
 #include <fstream>;
 #include <string.h>
 #include <locale>
 using namespace std;
 
+
 int main()
 {
     setlocale(LC_ALL, "Portuguese");
-    int op, posicao = 0, pos, quant;
+    int op, pos, quant, id;
     string nome, marca;
-
+    char opcao;
+    char continuar;
 
     do{
         menu(op);
@@ -19,15 +22,44 @@ int main()
 
         case 1:
             system("cls");
+            id = 0;
+
+            cout << "Essa função irá sobrescrever tudo que há no arquivo.\nDeseja continuar? <s - n> ";
+            cin >> continuar;
+            if(continuar == 's' || continuar == 'S'){
+                pegaDados(nome, quant, marca);
+                criarListaJson(nome, quant, marca, id);
+                criarListaTxt(nome, quant, marca, id);
+
+                cout << "Digite S para continuar ou N para sair: ";
+                cin >> opcao;
+                if(opcao == 's' || opcao == 'S'){
+                    do{
+                        pegaDados(nome, quant, marca);
+                        id = pegaId();
+                        inserirProdutoJson(nome, quant, marca, id);
+                        inserirProdutoTxt(nome, quant, marca, id);
+                        cout << "Digite S para continuar ou N para sair: ";
+                        cin >> opcao;
+                    } while(opcao != 'n' && opcao != 'N');
+                } else {
+
+                }
+            }
             //insereProduto();
-            criarListaJson(nome, quant, marca);\
             //cadastrarProduto(produtos, posicao);
             break;
 
         case 2:
             system("cls");
-
-            inserirNovoProduto(nome, quant, marca, pegaId());
+            do{
+                pegaDados(nome, quant, marca);
+                id = pegaId();
+                inserirProdutoJson(nome, quant, marca, id);
+                inserirProdutoTxt(nome, quant, marca, id);
+                cout << "Digite S para continuar ou N para sair: ";
+                cin >> opcao;
+            } while(opcao != 'n' && opcao != 'N');
 
             //lerProduto();
             //listarProdutos(produtos, posicao);
