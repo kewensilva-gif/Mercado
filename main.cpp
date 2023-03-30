@@ -31,15 +31,16 @@ int main()
                 criarListaJson(nome, quant, marca, id);
                 criarListaTxt(nome, quant, marca, id);
 
-                cout << "Digite S para continuar ou N para sair: ";
+                cout << "Deseja continuar? <s - n> ";
                 cin >> opcao;
                 if(opcao == 's' || opcao == 'S'){
+                    system("cls");
                     do{
                         pegaDados(nome, quant, marca);
-                        id = pegaId();
+                        id = converteId();
                         inserirProdutoJson(nome, quant, marca, id);
                         inserirProdutoTxt(nome, quant, marca, id);
-                        cout << "Digite S para continuar ou N para sair: ";
+                        cout << "Deseja continuar? <s - n> ";
                         cin >> opcao;
                     } while(opcao != 'n' && opcao != 'N');
                 }
@@ -51,10 +52,10 @@ int main()
             system("cls");
             do{
                 pegaDados(nome, quant, marca);
-                id = pegaId();
+                id = converteId();
                 inserirProdutoJson(nome, quant, marca, id);
                 inserirProdutoTxt(nome, quant, marca, id);
-                cout << "Digite S para continuar ou N para sair: ";
+                cout << "Deseja continuar? <s - n> ";
                 cin >> opcao;
             } while(opcao != 'n' && opcao != 'N');
 
@@ -62,9 +63,9 @@ int main()
 
         case 3:
             system("cls");
-            //cout << "Digite o id do produto: ";
-            //cin >> pos;
-            removerProdutoJson(pegaId());
+            cout << "Digite o id do produto: ";
+            cin >> pos;
+            removerProdutoJson(pos);
 
             break;
 
@@ -77,6 +78,11 @@ int main()
         case 5:
             system("cls");
             break;
+        case 0:
+            cout << "saindo..." << endl;
+            break;
+        default:
+            cout << "Opção inválida. Tente novamente!" << endl;
         }
     } while(op);
 

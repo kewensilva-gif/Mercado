@@ -1,28 +1,10 @@
 {
 	"produtos": [ 
 		{
-			"Nome": "caja",
-			"Quantidade": 6,
-			"Marca": "caja",
-			"id": 0
-		},	
-		{
-			"Nome": "mel∆o",
-			"Quantidade": 19,
-			"Marca": "mel∆o",
+			"Nome": "jo",
+			"Quantidade": 32,
+			"Marca": "dsa",
 			"id": 1
-		},	
-		{
-			"Nome": "maá∆",
-			"Quantidade": 7,
-			"Marca": "maá∆",
-			"id": 2
-		},	
-		{
-			"Nome": "mel∆",
-			"Quantidade": 4,
-			"Marca": "dasd",
-			"id": 3
-		}	
+		}
 	]
 }

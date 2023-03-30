@@ -18,11 +18,11 @@ referente a posição.
 5 - Depois é feito um loop pra pegar apenas a parte numérica dessa string
 6 - E então é utilizada a função stoi para converter em inteiro;
 */
-int pegaId(){
+string pegaStringUltimoId(){
     fstream produtos;
 
-    string linha, aux, aux2;
-    int cont = 0, cont2 = 0, len, id;
+    string linha, aux;
+    int cont = 0, cont2 = 0;
 
     produtos.open("produtos.json", ios::in);
 
@@ -43,13 +43,23 @@ int pegaId(){
             cont2++;
             if(cont-3 == cont2){
                 aux = linha;
-                len = strlen(linha.c_str());
+
             }
         }
 
     } else {
         cout << "Não foi possível abrir o arquivo" << endl;
     }
+
+    return aux;
+}
+
+int converteId(){
+    string aux, aux2;
+    int len, id;
+
+    aux = pegaStringUltimoId();
+    len = len = strlen(aux.c_str());
 
     for(int i = 0; i < len; i++){
         if(i == len-2 || i == len-1){
@@ -60,7 +70,6 @@ int pegaId(){
     id = stoi(aux2);
     return id;
 }
-
 
 // Esta função cria o arquivo json caso ele não exista e se existir ela o sobrescreve
 void criarListaJson(string nome, int quant, string marca, int id){
@@ -74,7 +83,7 @@ void criarListaJson(string nome, int quant, string marca, int id){
         produtos << "\t\t\t\"Quantidade\": " << quant << ","<< endl;
         produtos << "\t\t\t\"Marca\": \"" << marca << "\","<< endl;
         produtos << "\t\t\t\"id\": " << id++ << endl;
-        produtos << "\t\t}\t" << endl;
+        produtos << "\t\t}" << endl;
 
         produtos << "\t]\n}" << endl;
         produtos.close();
@@ -111,7 +120,7 @@ void inserirProdutoJson(string nome, int quant, string marca, int id){
     produtos.open("produtos.json", ios::in);
     if(produtos.is_open()){
         while(getline(produtos, linha)){
-            if(linha == "\t\t}\t"){
+            if(linha == "\t\t}"){
                 break;
             } else
                 arquivo += (linha + "\n");
@@ -125,13 +134,13 @@ void inserirProdutoJson(string nome, int quant, string marca, int id){
     produtos.open("produtos.json", ios::out);
 
     produtos << arquivo;
-    produtos << "\t\t},\t" << endl;
+    produtos << "\t\t}," << endl;
     produtos << "\t\t{" << endl;
     produtos << "\t\t\t\"Nome\": \"" << nome << "\","<< endl;
     produtos << "\t\t\t\"Quantidade\": " << quant << ","<< endl;
     produtos << "\t\t\t\"Marca\": \"" << marca << "\","<< endl;
     produtos << "\t\t\t\"id\": " << ++id << endl;
-    produtos << "\t\t}\t" << endl;
+    produtos << "\t\t}" << endl;
     produtos << "\t]\n}" << endl;
 
     produtos.close();
@@ -153,7 +162,57 @@ void inserirProdutoTxt(string& nome, int& quant, string& marca, int id){
 }
 
 void removerProdutoJson(int id){
-    cout << "Id: " << id << endl;
+    string strId, pesquisa, linha, arquivo;
+    int cont, cont2;
+    bool ehUltimo = false;
+
+    cont = cont2 = 0;
+    pesquisa = "\t\t\t\"id\": " + to_string(id);
+    strId = pegaStringUltimoId();
+
+    if(strId == pesquisa){
+        ehUltimo = true;
+    }
+
+    fstream produtos;
+
+    produtos.open("produtos.json", ios::in);
+
+    if(produtos.is_open()){
+        while(getline(produtos, linha)){
+            cont++;
+            if(pesquisa == linha){
+                break;
+            }
+        }
+    } else {
+        cout << "Não foi possível abrir o arquivo!" << endl;
+    }
+
+
+    produtos.close();
+
+    produtos.open("produtos.json", ios::in);
+
+    if(produtos.is_open()){
+        while(getline(produtos, linha)){
+            cont2++;
+            if(cont2 >= cont-4 && cont2 <= cont+1){
+                continue;
+            } else if("\t\t}," == linha && ehUltimo){
+                arquivo += "\t\t}\n";
+            } else {
+                arquivo += linha + "\n";
+            }
+        }
+    }
+
+
+    produtos.close();
+
+    produtos.open("produtos.json", ios::out);
+
+    produtos << arquivo;
+
+    produtos.close();
 }
-
-
