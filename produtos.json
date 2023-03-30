@@ -2,27 +2,15 @@
 	"produtos": [ 
 		{
 			"Nome": "feijao",
-			"Quantidade": 8,
-			"Marca": "tioJoao",
+			"Quantidade": 5,
+			"Marca": "coca",
 			"id": 0
 		},	
 		{
-			"Nome": "produto",
-			"Quantidade": 19,
-			"Marca": "produto",
-			"id": 2
-		},	
-		{
-			"Nome": "produto",
-			"Quantidade": 5,
-			"Marca": "produto",
-			"id": 3
-		},	
-		{
-			"Nome": "produto",
-			"Quantidade": 3,
-			"Marca": "lu",
-			"id": 4
+			"Nome": "arroz",
+			"Quantidade": 9,
+			"Marca": "namorado",
+			"id": 1
 		}	
 	]
 }
