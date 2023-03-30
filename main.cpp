@@ -2,32 +2,31 @@
 #include "biblioteca.h"
 #include <fstream>;
 #include <string.h>
+#include <locale>
 using namespace std;
 
-void pegaDados(string& nome, int& quant, string& marca, int& id){
+void pegaDados(string& nome, int& quant, string& marca){
     cout << "Digite o nome do produto: ";
     cin >> nome;
     cout << "Digite a quantidade: ";
     cin >> quant;
     cout << "Digite a marca: ";
     cin >> marca;
-    cout << "Digite o id: ";
-    cin >> id;
 }
 
-void insereProduto(string& nome, int& quant, string& marca, int& id){
+void insereProduto(string& nome, int& quant, string& marca, int id){
     char opcao;
     ofstream produtos;
     produtos.open("produtos.txt", ios::app);
 
      do{
-        pegaDados(nome, quant, marca, id);
+        pegaDados(nome, quant, marca);
 
         produtos << "**Produto**" << endl;
         produtos << "Nome: " << nome << endl;
         produtos << "Quantidade: " << quant << endl;
         produtos << "Marca: " << marca << endl;
-        produtos << "id: " << id << endl;
+        produtos << "id: " << ++id << endl;
 
         cout << "Digite S para continuar ou N para sair: ";
         cin >> opcao;
@@ -66,8 +65,8 @@ void produtoJson(){
 
 }
 
-void criarListaJson(string nome, int quant, string marca, int id){
-    int sair;
+void criarListaJson(string nome, int quant, string marca){
+    int sair, id;
     char continuar;
 
     cout << "Essa função irá sobrescrever tudo que há no arquivo.\nDeseja continuar? <s - n> ";
@@ -78,13 +77,13 @@ void criarListaJson(string nome, int quant, string marca, int id){
         produtos.open("produtos.json", ios::out);
         produtos << "{\n\t\"produtos\": [ " << endl;
          do{
-            pegaDados(nome, quant, marca, id);
+            pegaDados(nome, quant, marca);
 
             produtos << "\t\t{" << endl;
             produtos << "\t\t\t\"Nome\": \"" << nome << "\","<< endl;
             produtos << "\t\t\t\"Quantidade\": " << quant << ","<< endl;
             produtos << "\t\t\t\"Marca\": \"" << marca << "\","<< endl;
-            produtos << "\t\t\t\"id\": " << id << endl;
+            produtos << "\t\t\t\"id\": " << id++ << endl;
 
 
             cout << "Digite 0 para sair: ";
@@ -103,13 +102,12 @@ void criarListaJson(string nome, int quant, string marca, int id){
     }
 }
 
-inserirNovoProduto(string nome, int quant, string marca, int id){
+void inserirNovoProduto(string nome, int quant, string marca, int id){
 
     fstream produtos;
     string arquivo;
     string linha;
     produtos.open("produtos.json", ios::in);
-
     if(produtos.is_open()){
         while(getline(produtos, linha)){
             if(linha == "\t\t}\t"){
@@ -128,11 +126,11 @@ inserirNovoProduto(string nome, int quant, string marca, int id){
     produtos << arquivo;
     produtos << "\t\t},\t" << endl;
     produtos << "\t\t{" << endl;
-    pegaDados(nome, quant, marca, id);
+    pegaDados(nome, quant, marca);
     produtos << "\t\t\t\"Nome\": \"" << nome << "\","<< endl;
     produtos << "\t\t\t\"Quantidade\": " << quant << ","<< endl;
     produtos << "\t\t\t\"Marca\": \"" << marca << "\","<< endl;
-    produtos << "\t\t\t\"id\": " << id << endl;
+    produtos << "\t\t\t\"id\": " << ++id << endl;
     produtos << "\t\t}\t" << endl;
     produtos << "\t]\n}" << endl;
 
@@ -140,18 +138,19 @@ inserirNovoProduto(string nome, int quant, string marca, int id){
 
 }
 
-void removerProdutoJson(){
+// Função que pega o id do objeto
+int pegaId(){
     fstream produtos;
+
     string linha, aux, aux2;
-    int cont = 0, cont2 = 0, len;
+    int cont = 0, cont2 = 0, len, id;
+
     produtos.open("produtos.json", ios::in);
 
     if(produtos.is_open()){
         while(getline(produtos, linha)){
             cont++;
         }
-        cout << cont<<endl;
-
     } else {
         cout << "Não foi possível abri o arquivo" << endl;
     }
@@ -178,14 +177,19 @@ void removerProdutoJson(){
             aux2 += aux[i];
         }
     }
-    int res;
-    res = stoi(aux2);
-    cout << "REsultado" << res+res << endl;
+
+    id = stoi(aux2);
+    return id;
+}
+
+void removerProdutoJson(int id){
+    cout << "Id: " << id << endl;
 }
 
 int main()
 {
-    int op, posicao = 0, pos, quant, id;
+    setlocale(LC_ALL, "Portuguese");
+    int op, posicao = 0, pos, quant;
     string nome, marca;
 
     struct estoque produtos[100];
@@ -196,31 +200,38 @@ int main()
         switch(op){
 
         case 1:
+            system("cls");
             //insereProduto();
-            criarListaJson(nome, quant, marca, id);
+            criarListaJson(nome, quant, marca);\
             //cadastrarProduto(produtos, posicao);
             break;
 
         case 2:
-            produtoJson();
+            system("cls");
+            pos = pegaId();
+            inserirNovoProduto(nome, quant, marca, pos);
+
             //lerProduto();
             //listarProdutos(produtos, posicao);
             break;
 
         case 3:
+            system("cls");
             //cout << "Digite o id do produto: ";
             //cin >> pos;
-            removerProdutoJson();
+            removerProdutoJson(pegaId());
             //removerProduto(produtos, pos);
             break;
 
         case 4:
+            system("cls");
             cout << "Digite o id do produto: ";
             cin >> pos;
             adicionarQuant(produtos, pos);
             break;
         case 5:
-            inserirNovoProduto(nome, quant, marca, id);
+            system("cls");
+            produtoJson();
             break;
         }
     } while(op);

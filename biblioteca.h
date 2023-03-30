@@ -10,8 +10,9 @@ struct estoque{
 };
 
 void menu(int& op){
-    cout << "1 - Cadastrar produto" << endl;
-    cout << "2 - Listar produtos" << endl;
+    system("cls");
+    cout << "1 - Criar lista" << endl;
+    cout << "2 - Inserir novo produto" << endl;
     cout << "3 - Remover produto" << endl;
     cout << "4 - Adicionar quantidade ao estoque" << endl;
     cout << "0 - Sair" << endl;

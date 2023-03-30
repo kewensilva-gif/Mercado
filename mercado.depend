@@ -1,9 +1,11 @@
 # depslib dependency file v1.0
-1680121350 source:d:\trabalho-prog2\mercado\main.cpp
+1680135995 source:d:\trabalho-prog2\mercado\main.cpp
 	<iostream>
 	"biblioteca.h"
 	<fstream>
+	<string.h>
+	<locale>
 
-1680111903 d:\trabalho-prog2\mercado\biblioteca.h
+1680136010 d:\trabalho-prog2\mercado\biblioteca.h
 	<iostream>
 

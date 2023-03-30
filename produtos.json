@@ -2,21 +2,27 @@
 	"produtos": [ 
 		{
 			"Nome": "feijao",
-			"Quantidade": 2,
-			"Marca": "tio",
+			"Quantidade": 8,
+			"Marca": "tioJoao",
 			"id": 0
-		},
-		{
-			"Nome": "arroz",
-			"Quantidade": 4,
-			"Marca": "namorado",
-			"id": 1
 		},	
 		{
-			"Nome": "carne",
-			"Quantidade": 6,
-			"Marca": "seara",
+			"Nome": "produto",
+			"Quantidade": 19,
+			"Marca": "produto",
 			"id": 2
+		},	
+		{
+			"Nome": "produto",
+			"Quantidade": 5,
+			"Marca": "produto",
+			"id": 3
+		},	
+		{
+			"Nome": "produto",
+			"Quantidade": 3,
+			"Marca": "lu",
+			"id": 4
 		}	
 	]
 }
