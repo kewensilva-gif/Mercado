@@ -42,12 +42,9 @@ int main()
                         cout << "Digite S para continuar ou N para sair: ";
                         cin >> opcao;
                     } while(opcao != 'n' && opcao != 'N');
-                } else {
-
                 }
             }
-            //insereProduto();
-            //cadastrarProduto(produtos, posicao);
+
             break;
 
         case 2:
@@ -61,8 +58,6 @@ int main()
                 cin >> opcao;
             } while(opcao != 'n' && opcao != 'N');
 
-            //lerProduto();
-            //listarProdutos(produtos, posicao);
             break;
 
         case 3:
@@ -81,7 +76,6 @@ int main()
             break;
         case 5:
             system("cls");
-            produtoJson();
             break;
         }
     } while(op);
