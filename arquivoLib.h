@@ -15,8 +15,6 @@ void pegaDados(string& nome, int& quant, string& marca){
 3 - Na segunda ele utiliza outro contador e quando este tiver o valor do primeiro subtraido 3 é guardada a linha
 referente a posição.
 4 - Assim é possivel pegar a linha onde está o id do último objeto
-5 - Depois é feito um loop pra pegar apenas a parte numérica dessa string
-6 - E então é utilizada a função stoi para converter em inteiro;
 */
 string pegaStringUltimoId(){
     fstream produtos;
@@ -54,6 +52,11 @@ string pegaStringUltimoId(){
     return aux;
 }
 
+/*Esta função utiliza a função pegaStringUltimo id e converte em inteiro
+1 - guarda a string retornada
+2 - Depois é feito um loop pra pegar apenas a parte numérica dessa string
+3 - E então é utilizada a função stoi para converter em inteiro;
+*/
 int converteId(){
     string aux, aux2;
     int len, id;
@@ -161,6 +164,18 @@ void inserirProdutoTxt(string& nome, int& quant, string& marca, int id){
     produtos.close();
 }
 
+
+/*Esta função remove um objeto json
+ 1 - abre o arquivo e lê até que encontre o id digitado
+ 2 - guarda o numero da linha no contador
+ 3 - fecha o arquivo e abre de novo
+ 4 - com um segundo contador verifica as linha que serão removidas
+ 5 - guarda as linha que não foram removidas na string arquivo
+ 6 - fecha o arquivo e agora abre para saída
+ 7 - insere a string arquivo no arquivo "produtos"
+ 8 - fecha o arquivo
+
+*/
 void removerProdutoJson(int id){
     string strId, pesquisa, linha, arquivo;
     int cont, cont2;
