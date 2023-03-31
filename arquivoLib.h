@@ -22,6 +22,7 @@ void pegaQuantLinhas(int& cont){
 /* Aqui ela tem um breakpoint personalisado
 1 - é passado no segundo parâmetro a string que vai servir de breakpoint
 2 - caso ela seja encontrada o programa sai do loop e o contador só é somado até aquela linha
+3 - O terceiro parametro é para verificar se o id exite
 */
 
 void pegaQuantLinhas(int& cont, string condicao, bool& check){
@@ -57,40 +58,25 @@ void pegaDados(string& nome, int& quant, string& marca){
 }
 
 /* Esta função pega o id do último objeto inserido no json da seguinte forma:
-1 - o arquivo é aberto para leitura duas vezes
-2 - Na primeira leitura ele faz a contagem de linha existentes e guarda no primeiro contador
-3 - Na segunda ele utiliza outro contador e quando este tiver o valor do primeiro subtraido 3 é guardada a linha
+1 - pega a quantidade de linhas com a função pegaQauntLinhas que retorna um contador
+2 - Depois ele utiliza outro contador e quando este tiver o valor do primeiro subtraido 3 é guardada a linha
 referente a posição.
 4 - Assim é possivel pegar a linha onde está o id do último objeto
 */
 string pegaStringUltimoId(){
-
-
     string linha, aux;
     int cont, cont2 = 0;
 
     pegaQuantLinhas(cont);
-    /*produtos.open("produtos.json", ios::in);
 
-    if(produtos.is_open()){
-        while(getline(produtos, linha)){
-            cont++;
-        }
-    } else {
-        cout << "Não foi possível abri o arquivo" << endl;
-    }
-
-    produtos.close();
-    */
     ifstream produtos;
-    produtos.open("produtos.json", ios::in);
+    produtos.open("produtos.json");
 
     if(produtos.is_open()){
         while(getline(produtos, linha)){
             cont2++;
             if(cont-3 == cont2){
                 aux = linha;
-
             }
         }
 
@@ -215,15 +201,12 @@ void inserirProdutoTxt(string& nome, int& quant, string& marca, int id){
 
 
 /*Esta função remove um objeto json
- 1 - abre o arquivo e lê até que encontre o id digitado
- 2 - guarda o numero da linha no contador
- 3 - fecha o arquivo e abre de novo
- 4 - com um segundo contador verifica as linha que serão removidas
- 5 - guarda as linha que não foram removidas na string arquivo
- 6 - fecha o arquivo e agora abre para saída
- 7 - insere a string arquivo no arquivo "produtos"
- 8 - fecha o arquivo
-
+ 1 - chama a função pegaQuantLinhas
+ 2 - com um segundo contador verifica as linha que serão removidas
+ 3 - guarda as linha que não foram removidas na string arquivo
+ 4 - fecha o arquivo e agora abre para saída
+ 5 - insere a string arquivo no arquivo "produtos"
+ 6 - fecha o arquivo
 */
 void removerProdutoJson(int id){
     string strId, pesquisa, linha, arquivo;
@@ -265,8 +248,6 @@ void removerProdutoJson(int id){
     } else {
         cout << "O ID não existe!" << endl;
     }
-
-
 }
 
 void removerProdutoTxt(int id){
