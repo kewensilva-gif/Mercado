@@ -1,11 +1,11 @@
 /*Esta função utiliza sobrecarga e o seu objetivo é trazer a quantidade de linhas do arquivo
 1 - abre o arquivo e com o auxilio de um contador pega a quantidade de linha
 */
-void pegaQuantLinhas(int& cont){
+void pegaQuantLinhas(int& cont, string arquivo){
     string linha;
     fstream produtos;
 
-    produtos.open("produtos.json", ios::in);
+    produtos.open(arquivo, ios::in);
 
     if(produtos.is_open()){
         while(getline(produtos, linha)){
@@ -25,11 +25,12 @@ void pegaQuantLinhas(int& cont){
 3 - O terceiro parametro é para verificar se o id exite
 */
 
-void pegaQuantLinhas(int& cont, string condicao, bool& check){
+void pegaQuantLinhas(int& cont, string condicao, string arquivo, bool& check){
+    check = false;
     string linha;
     ifstream produtos;
 
-    produtos.open("produtos.json", ios::in);
+    produtos.open(arquivo, ios::in);
 
     if(produtos.is_open()){
         while(getline(produtos, linha)){
@@ -67,7 +68,7 @@ string pegaStringUltimoId(){
     string linha, aux;
     int cont, cont2 = 0;
 
-    pegaQuantLinhas(cont);
+    pegaQuantLinhas(cont, "produtos.json");
 
     ifstream produtos;
     produtos.open("produtos.json");
@@ -222,7 +223,7 @@ void removerProdutoJson(int id){
         ehUltimo = true;
     }
 
-    pegaQuantLinhas(cont, pesquisa, checkId);
+    pegaQuantLinhas(cont, pesquisa, "produtos.json", checkId);
 
     if(checkId){
         fstream produtos;
@@ -255,9 +256,8 @@ void removerProdutoTxt(int id){
     int cont, cont2;
     bool checkId = false;
     cont = cont2 = 0;
-    pesquisa = "\"id\": " + to_string(id);
-
-    pegaQuantLinhas(cont, pesquisa, checkId);
+    pesquisa = "id: " + to_string(id);
+    pegaQuantLinhas(cont, pesquisa, "produtos.txt", checkId);
 
     if(checkId){
         fstream produtos;

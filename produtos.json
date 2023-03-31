@@ -1,9 +1,9 @@
 {
 	"produtos": [ 
 		{
-			"Nome": "teste",
+			"Nome": "feijao",
 			"Quantidade": 32,
-			"Marca": "dasdsa",
+			"Marca": "da",
 			"id": 0
 		}
 	]
