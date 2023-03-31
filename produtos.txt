@@ -1,0 +1,6 @@
+**Produto**
+Nome: arroz
+Quantidade: 32
+Marca: das
+Valor: 23
+id: 1

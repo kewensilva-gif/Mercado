@@ -266,7 +266,7 @@ void removerProdutoTxt(int id){
     cont = cont2 = 0;
     pesquisa = "id: " + to_string(id);
     pegaQuantLinhas(cont, pesquisa, "produtos.txt", checkId);
-
+    cout << cont << endl;
     if(checkId){
         fstream produtos;
         produtos.open("produtos.txt", ios::in);
@@ -274,7 +274,7 @@ void removerProdutoTxt(int id){
         if(produtos.is_open()){
             while(getline(produtos, linha)){
                 cont2++;
-                if(cont2 >= cont-TAM){
+                if(cont2 >= cont-TAM && cont2 <= cont){
                     continue;
                 } else {
                     arquivo += linha + "\n";
