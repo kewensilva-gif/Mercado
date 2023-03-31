@@ -1,3 +1,5 @@
+#define TAM 5
+
 /*Esta função utiliza sobrecarga e o seu objetivo é trazer a quantidade de linhas do arquivo
 1 - abre o arquivo e com o auxilio de um contador pega a quantidade de linha
 */
@@ -49,13 +51,15 @@ void pegaQuantLinhas(int& cont, string condicao, string arquivo, bool& check){
 }
 
 // Esta função pega os dados do produto
-void pegaDados(string& nome, int& quant, string& marca){
+void pegaDados(string& nome, int& quant, string& marca, float& valor){
     cout << "Digite o nome do produto: ";
     cin >> nome;
     cout << "Digite a quantidade: ";
     cin >> quant;
     cout << "Digite a marca: ";
     cin >> marca;
+    cout << "Digite O valor: ";
+    cin >> valor;
 }
 
 /* Esta função pega o id do último objeto inserido no json da seguinte forma:
@@ -111,7 +115,7 @@ int converteId(){
 }
 
 // Esta função cria o arquivo json caso ele não exista e se existir ela o sobrescreve
-void criarListaJson(string nome, int quant, string marca, int id){
+void criarListaJson(string nome, int quant, string marca, float valor, int id){
 
         fstream produtos;
         produtos.open("produtos.json", ios::out);
@@ -121,6 +125,7 @@ void criarListaJson(string nome, int quant, string marca, int id){
         produtos << "\t\t\t\"Nome\": \"" << nome << "\","<< endl;
         produtos << "\t\t\t\"Quantidade\": " << quant << ","<< endl;
         produtos << "\t\t\t\"Marca\": \"" << marca << "\","<< endl;
+        produtos << "\t\t\t\"Valor\": " << valor << "," << endl;
         produtos << "\t\t\t\"id\": " << id++ << endl;
         produtos << "\t\t}" << endl;
 
@@ -131,7 +136,7 @@ void criarListaJson(string nome, int quant, string marca, int id){
 
 // Esta função cria o arquivo txt caso ele não exista e se existir ela sobrescreve
 
-void criarListaTxt(string nome, int quant, string marca, int id){
+void criarListaTxt(string nome, int quant, string marca, float valor, int id){
     ofstream produtos;
     produtos.open("produtos.txt");
 
@@ -139,6 +144,7 @@ void criarListaTxt(string nome, int quant, string marca, int id){
     produtos << "Nome: " << nome << endl;
     produtos << "Quantidade: " << quant << endl;
     produtos << "Marca: " << marca << endl;
+    produtos << "Valor: " << valor << endl;
     produtos << "id: " << id++ << endl;
 
 }
@@ -151,7 +157,7 @@ Aí então, o arquivo é fechado.
 2 - Depois o arquivo é aberto para saida de dados, onde é inserido o novo objeto, aplicando
 a sintaxe de json.
 */
-void inserirProdutoJson(string nome, int quant, string marca, int id){
+void inserirProdutoJson(string nome, int quant, string marca, float valor, int id){
 
     fstream produtos;
     string arquivo;
@@ -178,6 +184,7 @@ void inserirProdutoJson(string nome, int quant, string marca, int id){
     produtos << "\t\t\t\"Nome\": \"" << nome << "\","<< endl;
     produtos << "\t\t\t\"Quantidade\": " << quant << ","<< endl;
     produtos << "\t\t\t\"Marca\": \"" << marca << "\","<< endl;
+    produtos << "\t\t\t\"Valor\": " << valor << "," << endl;
     produtos << "\t\t\t\"id\": " << ++id << endl;
     produtos << "\t\t}" << endl;
     produtos << "\t]\n}" << endl;
@@ -187,7 +194,7 @@ void inserirProdutoJson(string nome, int quant, string marca, int id){
 }
 
 // Esta função insere uma tabela do produto só que agora para um arquivo txt
-void inserirProdutoTxt(string& nome, int& quant, string& marca, int id){
+void inserirProdutoTxt(string& nome, int& quant, string& marca, float valor, int id){
     ofstream produtos;
     produtos.open("produtos.txt", ios::app);
 
@@ -195,6 +202,7 @@ void inserirProdutoTxt(string& nome, int& quant, string& marca, int id){
     produtos << "Nome: " << nome << endl;
     produtos << "Quantidade: " << quant << endl;
     produtos << "Marca: " << marca << endl;
+    produtos << "Valor: " << valor << endl;
     produtos << "id: " << ++id << endl;
 
     produtos.close();
@@ -231,7 +239,7 @@ void removerProdutoJson(int id){
         if(produtos.is_open()){
             while(getline(produtos, linha)){
                 cont2++;
-                if(cont2 >= cont-4 && cont2 <= cont+1){
+                if(cont2 >= cont-TAM && cont2 <= cont+1){
                     continue;
                 } else if("\t\t}," == linha && ehUltimo){
                     arquivo += "\t\t}\n";
@@ -266,7 +274,7 @@ void removerProdutoTxt(int id){
         if(produtos.is_open()){
             while(getline(produtos, linha)){
                 cont2++;
-                if(cont2 >= cont-5){
+                if(cont2 >= cont-TAM){
                     continue;
                 } else {
                     arquivo += linha + "\n";

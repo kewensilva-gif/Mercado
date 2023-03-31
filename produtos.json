@@ -1,10 +1,11 @@
 {
 	"produtos": [ 
 		{
-			"Nome": "feijao",
+			"Nome": "arroz",
 			"Quantidade": 32,
-			"Marca": "da",
-			"id": 0
+			"Marca": "dsa",
+			"Valor": 9,
+			"id": 1
 		}
 	]
 }

@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1680273284 source:d:\trabalho-prog2\mercado\main.cpp
+1680279781 source:d:\trabalho-prog2\mercado\main.cpp
 	<iostream>
 	"biblioteca.h"
 	"arquivoLib.h"
@@ -7,10 +7,10 @@
 	<string.h>
 	<locale>
 
-1680278230 d:\trabalho-prog2\mercado\biblioteca.h
+1680279092 d:\trabalho-prog2\mercado\biblioteca.h
 	<iostream>
 	<fstream>
 	<string.h>
 
-1680278135 d:\trabalho-prog2\mercado\arquivolib.h
+1680280777 d:\trabalho-prog2\mercado\arquivolib.h
 

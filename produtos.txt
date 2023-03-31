@@ -1,4 +1,0 @@
-**Produto**
-Nome: feijao
-Quantidade: 32
-Marca: da
