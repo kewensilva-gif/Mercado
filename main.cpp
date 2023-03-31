@@ -66,7 +66,7 @@ int main()
             cout << "Digite o id do produto: ";
             cin >> pos;
             removerProdutoJson(pos);
-
+            removerProdutoTxt(pos);
             break;
 
         case 4:

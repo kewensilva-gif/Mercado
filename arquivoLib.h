@@ -1,3 +1,50 @@
+/*Esta função utiliza sobrecarga e o seu objetivo é trazer a quantidade de linhas do arquivo
+1 - abre o arquivo e com o auxilio de um contador pega a quantidade de linha
+*/
+void pegaQuantLinhas(int& cont){
+    string linha;
+    fstream produtos;
+
+    produtos.open("produtos.json", ios::in);
+
+    if(produtos.is_open()){
+        while(getline(produtos, linha)){
+            cont++;
+        }
+    } else {
+        cout << "Não foi possível abrir o arquivo!" << endl;
+    }
+
+
+    produtos.close();
+}
+
+/* Aqui ela tem um breakpoint personalisado
+1 - é passado no segundo parâmetro a string que vai servir de breakpoint
+2 - caso ela seja encontrada o programa sai do loop e o contador só é somado até aquela linha
+*/
+
+void pegaQuantLinhas(int& cont, string condicao, bool& check){
+    string linha;
+    ifstream produtos;
+
+    produtos.open("produtos.json", ios::in);
+
+    if(produtos.is_open()){
+        while(getline(produtos, linha)){
+            cont++;
+            if(condicao == linha){
+                check = true;
+                break;
+            }
+        }
+    } else {
+        cout << "Não foi possível abrir o arquivo!" << endl;
+    }
+
+
+    produtos.close();
+}
 
 // Esta função pega os dados do produto
 void pegaDados(string& nome, int& quant, string& marca){
@@ -17,12 +64,13 @@ referente a posição.
 4 - Assim é possivel pegar a linha onde está o id do último objeto
 */
 string pegaStringUltimoId(){
-    fstream produtos;
+
 
     string linha, aux;
-    int cont = 0, cont2 = 0;
+    int cont, cont2 = 0;
 
-    produtos.open("produtos.json", ios::in);
+    pegaQuantLinhas(cont);
+    /*produtos.open("produtos.json", ios::in);
 
     if(produtos.is_open()){
         while(getline(produtos, linha)){
@@ -33,7 +81,8 @@ string pegaStringUltimoId(){
     }
 
     produtos.close();
-
+    */
+    ifstream produtos;
     produtos.open("produtos.json", ios::in);
 
     if(produtos.is_open()){
@@ -179,9 +228,10 @@ void inserirProdutoTxt(string& nome, int& quant, string& marca, int id){
 void removerProdutoJson(int id){
     string strId, pesquisa, linha, arquivo;
     int cont, cont2;
-    bool ehUltimo = false;
+    bool ehUltimo, checkId;
 
     cont = cont2 = 0;
+    ehUltimo = checkId = false;
     pesquisa = "\t\t\t\"id\": " + to_string(id);
     strId = pegaStringUltimoId();
 
@@ -189,45 +239,64 @@ void removerProdutoJson(int id){
         ehUltimo = true;
     }
 
-    fstream produtos;
+    pegaQuantLinhas(cont, pesquisa, checkId);
 
-    produtos.open("produtos.json", ios::in);
-
-    if(produtos.is_open()){
-        while(getline(produtos, linha)){
-            cont++;
-            if(pesquisa == linha){
-                break;
+    if(checkId){
+        fstream produtos;
+        produtos.open("produtos.json", ios::in);
+        if(produtos.is_open()){
+            while(getline(produtos, linha)){
+                cont2++;
+                if(cont2 >= cont-4 && cont2 <= cont+1){
+                    continue;
+                } else if("\t\t}," == linha && ehUltimo){
+                    arquivo += "\t\t}\n";
+                } else {
+                    arquivo += linha + "\n";
+                }
             }
         }
+
+        produtos.close();
+
+        produtos.open("produtos.json", ios::out);
+        produtos << arquivo;
+        produtos.close();
     } else {
-        cout << "Não foi possível abrir o arquivo!" << endl;
+        cout << "O ID não existe!" << endl;
     }
 
 
-    produtos.close();
+}
 
-    produtos.open("produtos.json", ios::in);
+void removerProdutoTxt(int id){
+    string pesquisa, linha, arquivo;
+    int cont, cont2;
+    bool checkId = false;
+    cont = cont2 = 0;
+    pesquisa = "\"id\": " + to_string(id);
 
-    if(produtos.is_open()){
-        while(getline(produtos, linha)){
-            cont2++;
-            if(cont2 >= cont-4 && cont2 <= cont+1){
-                continue;
-            } else if("\t\t}," == linha && ehUltimo){
-                arquivo += "\t\t}\n";
-            } else {
-                arquivo += linha + "\n";
+    pegaQuantLinhas(cont, pesquisa, checkId);
+
+    if(checkId){
+        fstream produtos;
+        produtos.open("produtos.txt", ios::in);
+
+        if(produtos.is_open()){
+            while(getline(produtos, linha)){
+                cont2++;
+                if(cont2 >= cont-5){
+                    continue;
+                } else {
+                    arquivo += linha + "\n";
+                }
             }
         }
+
+        produtos.close();
+
+        produtos.open("produtos.txt", ios::out);
+        produtos << arquivo;
+        produtos.close();
     }
-
-
-    produtos.close();
-
-    produtos.open("produtos.json", ios::out);
-
-    produtos << arquivo;
-
-    produtos.close();
 }
