@@ -1,7 +1,7 @@
 #include <iostream>
 #include "biblioteca.h"
 #include "arquivoLib.h"
-#include <fstream>;
+#include <fstream>
 #include <string.h>
 #include <locale>
 using namespace std;
