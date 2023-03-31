@@ -1,5 +1,23 @@
 #define TAM 5
 
+// função que agrupa os dados que serão inseridos nos arquivos
+void dadosTxt(ofstream& produtos, string nome, int quant, string marca, float valor, int id){
+    produtos << "**Produto**" << endl;
+    produtos << "Nome: " << nome << endl;
+    produtos << "Quantidade: " << quant << endl;
+    produtos << "Marca: " << marca << endl;
+    produtos << "Valor: " << valor << endl;
+    produtos << "id: " << ++id << endl;
+}
+
+void dadosJson(ofstream& produtos, string nome, int quant, string marca, float valor, int id){
+    produtos << "\t\t\t\"Nome\": \"" << nome << "\","<< endl;
+    produtos << "\t\t\t\"Quantidade\": " << quant << ","<< endl;
+    produtos << "\t\t\t\"Marca\": \"" << marca << "\","<< endl;
+    produtos << "\t\t\t\"Valor\": " << valor << "," << endl;
+    produtos << "\t\t\t\"id\": " << ++id << endl;
+}
+
 /*Esta função utiliza sobrecarga e o seu objetivo é trazer a quantidade de linhas do arquivo
 1 - abre o arquivo e com o auxilio de um contador pega a quantidade de linha
 */
@@ -89,6 +107,7 @@ string pegaStringUltimoId(){
         cout << "Não foi possível abrir o arquivo" << endl;
     }
 
+    produtos.close();
     return aux;
 }
 
@@ -117,16 +136,14 @@ int converteId(){
 // Esta função cria o arquivo json caso ele não exista e se existir ela o sobrescreve
 void criarListaJson(string nome, int quant, string marca, float valor, int id){
 
-        fstream produtos;
+        ofstream produtos;
         produtos.open("produtos.json", ios::out);
         produtos << "{\n\t\"produtos\": [ " << endl;
 
         produtos << "\t\t{" << endl;
-        produtos << "\t\t\t\"Nome\": \"" << nome << "\","<< endl;
-        produtos << "\t\t\t\"Quantidade\": " << quant << ","<< endl;
-        produtos << "\t\t\t\"Marca\": \"" << marca << "\","<< endl;
-        produtos << "\t\t\t\"Valor\": " << valor << "," << endl;
-        produtos << "\t\t\t\"id\": " << id++ << endl;
+
+        dadosJson(produtos, nome, quant, marca, valor, id);
+
         produtos << "\t\t}" << endl;
 
         produtos << "\t]\n}" << endl;
@@ -140,13 +157,9 @@ void criarListaTxt(string nome, int quant, string marca, float valor, int id){
     ofstream produtos;
     produtos.open("produtos.txt");
 
-    produtos << "**Produto**" << endl;
-    produtos << "Nome: " << nome << endl;
-    produtos << "Quantidade: " << quant << endl;
-    produtos << "Marca: " << marca << endl;
-    produtos << "Valor: " << valor << endl;
-    produtos << "id: " << id++ << endl;
+    dadosTxt(produtos, nome, quant, marca, valor, id);
 
+    produtos.close();
 }
 
 
@@ -158,13 +171,13 @@ Aí então, o arquivo é fechado.
 a sintaxe de json.
 */
 void inserirProdutoJson(string nome, int quant, string marca, float valor, int id){
-
-    fstream produtos;
     string arquivo;
     string linha;
-    produtos.open("produtos.json", ios::in);
-    if(produtos.is_open()){
-        while(getline(produtos, linha)){
+
+    ifstream produtosIn;
+    produtosIn.open("produtos.json");
+    if(produtosIn.is_open()){
+        while(getline(produtosIn, linha)){
             if(linha == "\t\t}"){
                 break;
             } else
@@ -174,23 +187,21 @@ void inserirProdutoJson(string nome, int quant, string marca, float valor, int i
         cout << "Não foi possivel abrir o arquivo" << endl;
     }
 
-    produtos.close();
+    produtosIn.close();
 
-    produtos.open("produtos.json", ios::out);
+    ofstream produtosOut;
+    produtosOut.open("produtos.json");
 
-    produtos << arquivo;
-    produtos << "\t\t}," << endl;
-    produtos << "\t\t{" << endl;
-    produtos << "\t\t\t\"Nome\": \"" << nome << "\","<< endl;
-    produtos << "\t\t\t\"Quantidade\": " << quant << ","<< endl;
-    produtos << "\t\t\t\"Marca\": \"" << marca << "\","<< endl;
-    produtos << "\t\t\t\"Valor\": " << valor << "," << endl;
-    produtos << "\t\t\t\"id\": " << ++id << endl;
-    produtos << "\t\t}" << endl;
-    produtos << "\t]\n}" << endl;
+    produtosOut << arquivo;
+    produtosOut << "\t\t}," << endl;
+    produtosOut << "\t\t{" << endl;
 
-    produtos.close();
+    dadosJson(produtosOut, nome, quant, marca, valor, id);
 
+    produtosOut << "\t\t}" << endl;
+    produtosOut << "\t]\n}" << endl;
+
+    produtosOut.close();
 }
 
 // Esta função insere uma tabela do produto só que agora para um arquivo txt
@@ -198,12 +209,7 @@ void inserirProdutoTxt(string& nome, int& quant, string& marca, float valor, int
     ofstream produtos;
     produtos.open("produtos.txt", ios::app);
 
-    produtos << "**Produto**" << endl;
-    produtos << "Nome: " << nome << endl;
-    produtos << "Quantidade: " << quant << endl;
-    produtos << "Marca: " << marca << endl;
-    produtos << "Valor: " << valor << endl;
-    produtos << "id: " << ++id << endl;
+    dadosTxt(produtos, nome, quant, marca, valor, id);
 
     produtos.close();
 }
@@ -265,8 +271,9 @@ void removerProdutoTxt(int id){
     bool checkId = false;
     cont = cont2 = 0;
     pesquisa = "id: " + to_string(id);
+
     pegaQuantLinhas(cont, pesquisa, "produtos.txt", checkId);
-    cout << cont << endl;
+
     if(checkId){
         fstream produtos;
         produtos.open("produtos.txt", ios::in);
