@@ -135,7 +135,7 @@ int converteId(){
 
 // Esta função cria o arquivo json caso ele não exista e se existir ela o sobrescreve
 void criarListaJson(string nome, int quant, string marca, float valor, int id){
-
+        id = id - 1;
         ofstream produtos;
         produtos.open("produtos.json", ios::out);
         produtos << "{\n\t\"produtos\": [ " << endl;
@@ -154,6 +154,7 @@ void criarListaJson(string nome, int quant, string marca, float valor, int id){
 // Esta função cria o arquivo txt caso ele não exista e se existir ela sobrescreve
 
 void criarListaTxt(string nome, int quant, string marca, float valor, int id){
+    id = id - 1;
     ofstream produtos;
     produtos.open("produtos.txt");
 
