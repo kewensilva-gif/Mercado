@@ -12,11 +12,11 @@ using namespace std;
 int main()
 {
     setlocale(LC_ALL, "Portuguese");
-    int op, pos, quant, id;
-    float valor;
-    string nome, marca;
+    int op, pos;
     char opcao;
     char continuar;
+
+    struct estoque produtos;
 
     do{
         menu(op);
@@ -25,24 +25,24 @@ int main()
 
         case 1:
             system("cls");
-            id = 0;
+            produtos.id = 0;
 
             cout << "Essa função irá sobrescrever tudo que há no arquivo.\nDeseja continuar? <s - n> ";
             cin >> continuar;
             if(continuar == 's' || continuar == 'S'){
-                pegaDados(nome, quant, marca, valor);
-                criarListaJson(nome, quant, marca, valor, id);
-                criarListaTxt(nome, quant, marca, valor, id);
+                pegaDados(produtos);
+                criarListaJson(produtos);
+                criarListaTxt(produtos);
 
                 cout << "Deseja continuar? <s - n> ";
                 cin >> opcao;
                 if(opcao == 's' || opcao == 'S'){
                     system("cls");
                     do{
-                        pegaDados(nome, quant, marca, valor);
-                        id = converteId();
-                        inserirProdutoJson(nome, quant, marca, valor, id);
-                        inserirProdutoTxt(nome, quant, marca, valor, id);
+                        pegaDados(produtos);
+                        produtos.id = converteId();
+                        inserirProdutoJson(produtos);
+                        inserirProdutoTxt(produtos);
                         cout << "Deseja continuar? <s - n> ";
                         cin >> opcao;
                     } while(opcao != 'n' && opcao != 'N');
@@ -54,10 +54,10 @@ int main()
         case 2:
             system("cls");
             do{
-                pegaDados(nome, quant, marca, valor);
-                id = converteId();
-                inserirProdutoJson(nome, quant, marca, valor, id);
-                inserirProdutoTxt(nome, quant, marca, valor, id);
+                pegaDados(produtos);
+                produtos.id = converteId();
+                inserirProdutoJson(produtos);
+                inserirProdutoTxt(produtos);
                 cout << "Deseja continuar? <s - n> ";
                 cin >> opcao;
             } while(opcao != 'n' && opcao != 'N');

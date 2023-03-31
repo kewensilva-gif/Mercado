@@ -1,21 +1,21 @@
 #define TAM 5
 
 // função que agrupa os dados que serão inseridos nos arquivos
-void dadosTxt(ofstream& produtos, string nome, int quant, string marca, float valor, int id){
-    produtos << "**Produto**" << endl;
-    produtos << "Nome: " << nome << endl;
-    produtos << "Quantidade: " << quant << endl;
-    produtos << "Marca: " << marca << endl;
-    produtos << "Valor: " << valor << endl;
-    produtos << "id: " << ++id << endl;
+void dadosTxt(ofstream& produtosOut, struct estoque produtos){
+    produtosOut << "**Produto**" << endl;
+    produtosOut << "Nome: " << produtos.nome << endl;
+    produtosOut << "Quantidade: " << produtos.quant << endl;
+    produtosOut << "Marca: " << produtos.marca << endl;
+    produtosOut << "Valor: " << produtos.valor << endl;
+    produtosOut << "id: " << ++produtos.id << endl;
 }
 
-void dadosJson(ofstream& produtos, string nome, int quant, string marca, float valor, int id){
-    produtos << "\t\t\t\"Nome\": \"" << nome << "\","<< endl;
-    produtos << "\t\t\t\"Quantidade\": " << quant << ","<< endl;
-    produtos << "\t\t\t\"Marca\": \"" << marca << "\","<< endl;
-    produtos << "\t\t\t\"Valor\": " << valor << "," << endl;
-    produtos << "\t\t\t\"id\": " << ++id << endl;
+void dadosJson(ofstream& produtosOut, struct estoque produtos){
+    produtosOut << "\t\t\t\"Nome\": \"" << produtos.nome << "\","<< endl;
+    produtosOut << "\t\t\t\"Quantidade\": " << produtos.quant << ","<< endl;
+    produtosOut << "\t\t\t\"Marca\": \"" << produtos.marca << "\","<< endl;
+    produtosOut << "\t\t\t\"Valor\": " << produtos.valor << "," << endl;
+    produtosOut << "\t\t\t\"id\": " << ++produtos.id << endl;
 }
 
 /*Esta função utiliza sobrecarga e o seu objetivo é trazer a quantidade de linhas do arquivo
@@ -23,12 +23,12 @@ void dadosJson(ofstream& produtos, string nome, int quant, string marca, float v
 */
 void pegaQuantLinhas(int& cont, string arquivo){
     string linha;
-    fstream produtos;
+    ifstream produtosIn;
 
-    produtos.open(arquivo, ios::in);
+    produtosIn.open(arquivo);
 
-    if(produtos.is_open()){
-        while(getline(produtos, linha)){
+    if(produtosIn.is_open()){
+        while(getline(produtosIn, linha)){
             cont++;
         }
     } else {
@@ -36,7 +36,7 @@ void pegaQuantLinhas(int& cont, string arquivo){
     }
 
 
-    produtos.close();
+    produtosIn.close();
 }
 
 /* Aqui ela tem um breakpoint personalisado
@@ -48,12 +48,12 @@ void pegaQuantLinhas(int& cont, string arquivo){
 void pegaQuantLinhas(int& cont, string condicao, string arquivo, bool& check){
     check = false;
     string linha;
-    ifstream produtos;
+    ifstream produtosIn;
 
-    produtos.open(arquivo, ios::in);
+    produtosIn.open(arquivo, ios::in);
 
-    if(produtos.is_open()){
-        while(getline(produtos, linha)){
+    if(produtosIn.is_open()){
+        while(getline(produtosIn, linha)){
             cont++;
             if(condicao == linha){
                 check = true;
@@ -65,19 +65,19 @@ void pegaQuantLinhas(int& cont, string condicao, string arquivo, bool& check){
     }
 
 
-    produtos.close();
+    produtosIn.close();
 }
 
 // Esta função pega os dados do produto
-void pegaDados(string& nome, int& quant, string& marca, float& valor){
+void pegaDados(struct estoque &produtos){
     cout << "Digite o nome do produto: ";
-    cin >> nome;
+    cin >> produtos.nome;
     cout << "Digite a quantidade: ";
-    cin >> quant;
+    cin >> produtos.quant;
     cout << "Digite a marca: ";
-    cin >> marca;
-    cout << "Digite O valor: ";
-    cin >> valor;
+    cin >> produtos.marca;
+    cout << "Digite o valor: ";
+    cin >> produtos.valor;
 }
 
 /* Esta função pega o id do último objeto inserido no json da seguinte forma:
@@ -92,11 +92,11 @@ string pegaStringUltimoId(){
 
     pegaQuantLinhas(cont, "produtos.json");
 
-    ifstream produtos;
-    produtos.open("produtos.json");
+    ifstream produtosIn;
+    produtosIn.open("produtos.json");
 
-    if(produtos.is_open()){
-        while(getline(produtos, linha)){
+    if(produtosIn.is_open()){
+        while(getline(produtosIn, linha)){
             cont2++;
             if(cont-3 == cont2){
                 aux = linha;
@@ -107,7 +107,7 @@ string pegaStringUltimoId(){
         cout << "Não foi possível abrir o arquivo" << endl;
     }
 
-    produtos.close();
+    produtosIn.close();
     return aux;
 }
 
@@ -134,33 +134,32 @@ int converteId(){
 }
 
 // Esta função cria o arquivo json caso ele não exista e se existir ela o sobrescreve
-void criarListaJson(string nome, int quant, string marca, float valor, int id){
-        id = id - 1;
-        ofstream produtos;
-        produtos.open("produtos.json", ios::out);
-        produtos << "{\n\t\"produtos\": [ " << endl;
+void criarListaJson(struct estoque produtos){
+        produtos.id = produtos.id - 1;
+        ofstream produtosOut;
+        produtosOut.open("produtos.json");
+        produtosOut << "{\n\t\"produtos\": [ " << endl;
 
-        produtos << "\t\t{" << endl;
+        produtosOut << "\t\t{" << endl;
 
-        dadosJson(produtos, nome, quant, marca, valor, id);
+        dadosJson(produtosOut, produtos);
 
-        produtos << "\t\t}" << endl;
+        produtosOut << "\t\t}" << endl;
 
-        produtos << "\t]\n}" << endl;
-        produtos.close();
-
+        produtosOut << "\t]\n}" << endl;
+        produtosOut.close();
 }
 
 // Esta função cria o arquivo txt caso ele não exista e se existir ela sobrescreve
 
-void criarListaTxt(string nome, int quant, string marca, float valor, int id){
-    id = id - 1;
-    ofstream produtos;
-    produtos.open("produtos.txt");
+void criarListaTxt(struct estoque produtos){
+    produtos.id = produtos.id - 1;
+    ofstream produtosOut;
+    produtosOut.open("produtos.txt");
 
-    dadosTxt(produtos, nome, quant, marca, valor, id);
+    dadosTxt(produtosOut, produtos);
 
-    produtos.close();
+    produtosOut.close();
 }
 
 
@@ -171,7 +170,7 @@ Aí então, o arquivo é fechado.
 2 - Depois o arquivo é aberto para saida de dados, onde é inserido o novo objeto, aplicando
 a sintaxe de json.
 */
-void inserirProdutoJson(string nome, int quant, string marca, float valor, int id){
+void inserirProdutoJson(struct estoque produtos){
     string arquivo;
     string linha;
 
@@ -197,7 +196,7 @@ void inserirProdutoJson(string nome, int quant, string marca, float valor, int i
     produtosOut << "\t\t}," << endl;
     produtosOut << "\t\t{" << endl;
 
-    dadosJson(produtosOut, nome, quant, marca, valor, id);
+    dadosJson(produtosOut, produtos);
 
     produtosOut << "\t\t}" << endl;
     produtosOut << "\t]\n}" << endl;
@@ -206,13 +205,13 @@ void inserirProdutoJson(string nome, int quant, string marca, float valor, int i
 }
 
 // Esta função insere uma tabela do produto só que agora para um arquivo txt
-void inserirProdutoTxt(string& nome, int& quant, string& marca, float valor, int id){
-    ofstream produtos;
-    produtos.open("produtos.txt", ios::app);
+void inserirProdutoTxt(struct estoque produtos){
+    ofstream produtosOut;
+    produtosOut.open("produtos.txt", ios::app);
 
-    dadosTxt(produtos, nome, quant, marca, valor, id);
+    dadosTxt(produtosOut, produtos);
 
-    produtos.close();
+    produtosOut.close();
 }
 
 
@@ -241,10 +240,10 @@ void removerProdutoJson(int id){
     pegaQuantLinhas(cont, pesquisa, "produtos.json", checkId);
 
     if(checkId){
-        fstream produtos;
-        produtos.open("produtos.json", ios::in);
-        if(produtos.is_open()){
-            while(getline(produtos, linha)){
+        fstream produtosInOut;
+        produtosInOut.open("produtos.json", ios::in);
+        if(produtosInOut.is_open()){
+            while(getline(produtosInOut, linha)){
                 cont2++;
                 if(cont2 >= cont-TAM && cont2 <= cont+1){
                     continue;
@@ -256,11 +255,11 @@ void removerProdutoJson(int id){
             }
         }
 
-        produtos.close();
+        produtosInOut.close();
 
-        produtos.open("produtos.json", ios::out);
-        produtos << arquivo;
-        produtos.close();
+        produtosInOut.open("produtos.json", ios::out);
+        produtosInOut << arquivo;
+        produtosInOut.close();
     } else {
         cout << "O ID não existe!" << endl;
     }
@@ -276,11 +275,11 @@ void removerProdutoTxt(int id){
     pegaQuantLinhas(cont, pesquisa, "produtos.txt", checkId);
 
     if(checkId){
-        fstream produtos;
-        produtos.open("produtos.txt", ios::in);
+        fstream produtosInOut;
+        produtosInOut.open("produtos.txt", ios::in);
 
-        if(produtos.is_open()){
-            while(getline(produtos, linha)){
+        if(produtosInOut.is_open()){
+            while(getline(produtosInOut, linha)){
                 cont2++;
                 if(cont2 >= cont-TAM && cont2 <= cont){
                     continue;
@@ -290,10 +289,10 @@ void removerProdutoTxt(int id){
             }
         }
 
-        produtos.close();
+        produtosInOut.close();
 
-        produtos.open("produtos.txt", ios::out);
-        produtos << arquivo;
-        produtos.close();
+        produtosInOut.open("produtos.txt", ios::out);
+        produtosInOut << arquivo;
+        produtosInOut.close();
     }
 }

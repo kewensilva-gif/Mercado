@@ -3,6 +3,13 @@
 #include <string.h>
 using namespace std;
 
+struct estoque {
+    string nome;
+    int quant;
+    string marca;
+    float valor;
+    int id;
+};
 
 void menu(int& op){
     system("cls");
