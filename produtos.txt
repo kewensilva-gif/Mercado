@@ -1,6 +1,18 @@
 **Produto**
-Nome: feijao
+Nome: dads
 Quantidade: 32
-Marca: dasd
+Marca: da
+Valor: 65
+id: 1
+**Produto**
+Nome: gfgd
+Quantidade: 32
+Marca: sdg
+Valor: 76
+id: 2
+**Produto**
+Nome: teste
+Quantidade: 32
+Marca: dsa
 Valor: 32
-id: 0
+id: 3

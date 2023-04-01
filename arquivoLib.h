@@ -50,7 +50,7 @@ void pegaQuantLinhas(int& cont, string condicao, string arquivo, bool& check){
     string linha;
     ifstream produtosIn;
 
-    produtosIn.open(arquivo, ios::in);
+    produtosIn.open(arquivo);
 
     if(produtosIn.is_open()){
         while(getline(produtosIn, linha)){
@@ -67,6 +67,7 @@ void pegaQuantLinhas(int& cont, string condicao, string arquivo, bool& check){
 
     produtosIn.close();
 }
+
 
 // Esta função pega os dados do produto
 void pegaDados(struct estoque &produtos){
@@ -121,7 +122,7 @@ int converteId(){
     int len, id;
 
     aux = pegaStringUltimoId();
-    len = len = strlen(aux.c_str());
+    len = strlen(aux.c_str());
 
     for(int i = 0; i < len; i++){
         if(i == len-2 || i == len-1){
@@ -294,5 +295,72 @@ void removerProdutoTxt(int id){
         produtosInOut.open("produtos.txt", ios::out);
         produtosInOut << arquivo;
         produtosInOut.close();
+    }
+}
+
+
+void modificaQuantidade(int id, int quant){
+    string pesquisa, linha, strQuant, strAcum, arquivo, str;
+    bool checkId = false;
+    int cont, cont2;
+    cont = cont2 = 0;
+
+    pesquisa = "\t\t\t\"id\": " + to_string(id);
+
+    pegaQuantLinhas(cont, pesquisa, "produtos.json", checkId);
+      if(checkId){
+        fstream produtosInOut;
+        produtosInOut.open("produtos.json", ios::in);
+        if(produtosInOut.is_open()){
+            while(getline(produtosInOut, linha)){
+                cont2++;
+                if(cont2 == cont + 2 - TAM){
+                    strQuant = linha;
+                    break;
+                }
+            }
+        }
+
+        produtosInOut.close();
+        for(int i = 0; i < strlen(strQuant.c_str()); i++){
+            if(strQuant[i] == ':'){
+                i += 2;
+                strAcum = strQuant[i++];
+
+                while(true){
+                    if(strQuant[i] != ','){
+                        strAcum += strQuant[i++];
+                    } else {
+                        break;
+                    }
+                }
+            }
+        }
+        quant += stoi(strAcum);
+        str = "\t\t\t\"Quantidade\": " + to_string(quant);
+
+        produtosInOut.open("produtos.json", ios::in);
+
+        if(produtosInOut.is_open()){
+            cont2 = 0;
+
+            while(getline(produtosInOut, linha)){
+                cont2++;
+                if(cont2 == cont + 2 - TAM){
+                    arquivo += str + ",\n";
+                } else {
+                    arquivo += linha + "\n";
+                }
+            }
+        }
+
+        produtosInOut.close();
+
+        produtosInOut.open("produtos.json", ios::out);
+        produtosInOut << arquivo;
+        produtosInOut.close();
+
+    } else {
+        cout << "O ID não existe!" << endl;
     }
 }

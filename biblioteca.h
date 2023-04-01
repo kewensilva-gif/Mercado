@@ -17,6 +17,7 @@ void menu(int& op){
     cout << "2 - Inserir novo produto" << endl;
     cout << "3 - Remover produto" << endl;
     cout << "4 - Adicionar quantidade ao estoque" << endl;
+    cout << "5 - Editar item" << endl;
     cout << "0 - Sair" << endl;
     cout << "Digite a opção desejada: ";
 

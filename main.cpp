@@ -12,7 +12,7 @@ using namespace std;
 int main()
 {
     setlocale(LC_ALL, "Portuguese");
-    int op, pos;
+    int op, pos, quant;
     char opcao;
     char continuar;
 
@@ -76,6 +76,9 @@ int main()
             system("cls");
             cout << "Digite o id do produto: ";
             cin >> pos;
+            cout << "Digite a quantidade a ser inserida: ";
+            cin >> quant;
+            modificaQuantidade(pos, quant);
 
             break;
         case 5:
