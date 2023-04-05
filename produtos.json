@@ -1,25 +1,18 @@
 {
 	"produtos": [ 
 		{
-			"Nome": "dads",
-			"Quantidade": 3272,
-			"Marca": "da",
-			"Valor": 65,
+			"Nome": "feijao",
+			"Quantidade": 6,
+			"Marca": "tiojoao",
+			"Valor": 8,
+			"id": 0
+		},
+		{
+			"Nome": "arroz",
+			"Quantidade": 103,
+			"Marca": "namorado",
+			"Valor": 2.5,
 			"id": 1
-		},
-		{
-			"Nome": "gfgd",
-			"Quantidade": 329,
-			"Marca": "sdg",
-			"Valor": 76,
-			"id": 2
-		},
-		{
-			"Nome": "teste",
-			"Quantidade": 32,
-			"Marca": "dsa",
-			"Valor": 32,
-			"id": 3
 		}
 	]
 }
