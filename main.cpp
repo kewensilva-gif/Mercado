@@ -1,9 +1,11 @@
 #include <iostream>
-#include "biblioteca.h"
-#include "arquivoLib.h"
 #include <fstream>
 #include <string.h>
 #include <locale>
+#include "libMain.h"
+#include "libArquivos.h"
+#include "libJSON.h"
+#include "libTXT.h"
 
 
 using namespace std;
@@ -31,8 +33,8 @@ int main()
             cin >> continuar;
             if(continuar == 's' || continuar == 'S'){
                 pegaDados(produtos);
-                criarListaJson(produtos);
-                criarListaTxt(produtos);
+                json::criarLista(produtos);
+                txt::criarLista(produtos);
 
                 cout << "Deseja continuar? <s - n> ";
                 cin >> opcao;
@@ -41,8 +43,8 @@ int main()
                     do{
                         pegaDados(produtos);
                         produtos.id = converteId();
-                        inserirProdutoJson(produtos);
-                        inserirProdutoTxt(produtos);
+                        json::inserirProduto(produtos);
+                        txt::inserirProduto(produtos);
                         cout << "Deseja continuar? <s - n> ";
                         cin >> opcao;
                     } while(opcao != 'n' && opcao != 'N');
@@ -56,8 +58,8 @@ int main()
             do{
                 pegaDados(produtos);
                 produtos.id = converteId();
-                inserirProdutoJson(produtos);
-                inserirProdutoTxt(produtos);
+                json::inserirProduto(produtos);
+                txt::inserirProduto(produtos);
                 cout << "Deseja continuar? <s - n> ";
                 cin >> opcao;
             } while(opcao != 'n' && opcao != 'N');
@@ -68,8 +70,8 @@ int main()
             system("cls");
             cout << "Digite o id do produto: ";
             cin >> pos;
-            removerProdutoJson(pos);
-            removerProdutoTxt(pos);
+            json::removerProduto(pos);
+            txt::removerProduto(pos);
             break;
 
         case 4:
@@ -78,8 +80,8 @@ int main()
             cin >> pos;
             cout << "Digite a quantidade a ser inserida: ";
             cin >> quant;
-            modificaQuantidade(pos, quant);
-
+            json::modificaQuantidade(pos, quant);
+            txt::modificaQuantidade(pos, quant);
             break;
         case 5:
             system("cls");
