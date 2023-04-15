@@ -29,3 +29,18 @@
 
 1680700892 d:\prog2\mercado\arquivolib.h
 
+1681572479 source:d:\repositorios\mercado\main.cpp
+	<iostream>
+	"biblioteca.h"
+	"arquivoLib.h"
+	<fstream>
+	<string.h>
+	<locale>
+
+1681572170 d:\repositorios\mercado\biblioteca.h
+	<iostream>
+	<fstream>
+	<string.h>
+
+1681572466 d:\repositorios\mercado\arquivolib.h
+

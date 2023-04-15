@@ -1,18 +1,11 @@
 {
 	"produtos": [ 
 		{
-			"Nome": "feijao",
-			"Quantidade": 6,
-			"Marca": "tiojoao",
-			"Valor": 8,
+			"Nome": "32",
+			"Quantidade": 32,
+			"Marca": "32",
+			"Valor": 32,
 			"id": 0
-		},
-		{
-			"Nome": "arroz",
-			"Quantidade": 103,
-			"Marca": "namorado",
-			"Valor": 2.5,
-			"id": 1
 		}
 	]
 }
