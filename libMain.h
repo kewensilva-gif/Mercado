@@ -11,13 +11,12 @@ struct estoque {
     int id;
 };
 
-void menu(int& op){
+void menuPrincipal(int& op){
     system("cls");
-    cout << "1 - Criar lista" << endl;
-    cout << "2 - Inserir novo produto" << endl;
-    cout << "3 - Remover produto" << endl;
-    cout << "4 - Adicionar quantidade ao estoque" << endl;
-    cout << "5 - Editar item" << endl;
+    cout << "MENU" << endl;
+    cout << "1 - Cadastrar cliente / Visualizar clientes" << endl;
+    cout << "2 - Cadastrar produtos / Visualizar produto" << endl;
+    cout << "3 - Caixa" << endl;
     cout << "0 - Sair" << endl;
     cout << "Digite a opção desejada: ";
 
@@ -25,6 +24,29 @@ void menu(int& op){
 }
 
 
+void menuEstoque(int& op){
+    system("cls");
+    cout << "1 - Criar lista" << endl;
+    cout << "2 - Inserir novo produto" << endl;
+    cout << "3 - Remover produto" << endl;
+    cout << "4 - Adicionar quantidade ao estoque" << endl;
+    cout << "5 - Editar item" << endl;
+    cout << "0 - Voltar ao menu inicial" << endl;
+    cout << "Digite a opção desejada: ";
+
+    cin >> op;
+}
+
+void menuCadastro(int& op){
+    system("cls");
+    cout << "1 - Cadastrar novo cliente" << endl;
+    cout << "2 - Visualizar clientes cadastrados" << endl;
+    cout << "3 - Remove clientes cadastrados" << endl;
+    cout << "0 - Voltar ao menu inicial" << endl;
+    cout << "Digite uma opcao: ";
+
+    cin >> op;
+}
 
 
 

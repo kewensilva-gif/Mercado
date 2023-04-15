@@ -54,11 +54,13 @@ void pegaQuantLinhas(int& cont, string condicao, string arquivo, bool& check){
 // Esta função pega os dados do produto
 void pegaDados(struct estoque &produtos){
     cout << "Digite o nome do produto: ";
-    cin >> produtos.nome;
+    cin.ignore();
+    getline(cin, produtos.nome);
     cout << "Digite a quantidade: ";
     cin >> produtos.quant;
     cout << "Digite a marca: ";
-    cin >> produtos.marca;
+    cin.ignore();
+    getline(cin, produtos.marca);
     cout << "Digite o valor: ";
     cin >> produtos.valor;
 }
