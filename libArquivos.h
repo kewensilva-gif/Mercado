@@ -64,8 +64,8 @@ void pegaDados(struct estoque &produtos){
     getline(cin, produtos.marca);
     cout << "Digite o custo: ";
     cin >> produtos.custo;
-    cout << "Digite o valor: ";
-    cin >> produtos.valor;
+    cout << "Digite o valor de venda: ";
+    cin >> produtos.venda;
 }
 
 /* Esta função pega o id do último objeto inserido no json da seguinte forma:
@@ -224,9 +224,6 @@ void fluxoDeCaixa(){
 }
 
 void alteraValoresCaixa(struct estoque produtos){
-    cout << produtos.quant << endl;
-    cout << produtos.custo << endl;
-    cout << produtos.valor << endl;
     string linha, valores;
     float val[3], lucro, custo, valorVendas;
 
@@ -252,19 +249,53 @@ void alteraValoresCaixa(struct estoque produtos){
                     }
                 }
             }
-            cout << valores << endl;
             val[j] = stof(valores);
             j++;
         }
     }
     caixa.close();
-    //cout << valores[1] << endl;
 
     custo = val[0] + (produtos.quant*produtos.custo);
-    valorVendas = val[1] + (produtos.quant*produtos.valor);
-    lucro = val[2] + (produtos.quant*produtos.valor - produtos.quant*produtos.custo);
+    valorVendas = val[1] + (produtos.quant*produtos.venda);
+    lucro = val[2] + (produtos.quant*produtos.venda - produtos.quant*produtos.custo);
 
     preencheFluxoCaixa("fluxoDeCaixa.txt", custo, valorVendas, lucro);
 }
 
+void pegaCustoEVenda(string strCusto, string strVenda, struct estoque produtos){
+    cout << strCusto << endl;
+    cout << strVenda << endl;
+    string val;
 
+
+    for(int i = 7; i < strlen(strCusto.c_str()); i++){
+        val += strCusto[i];
+    }
+    produtos.custo = stof(val);
+
+    val = "";
+    for(int i = 7; i < strlen(strVenda.c_str()); i++){
+        val += strVenda[i];
+    }
+    produtos.venda = stof(val);
+
+    cout << produtos.venda << endl;
+    cout << produtos.custo << endl;
+    cout << produtos.quant << endl;
+    alteraValoresCaixa(produtos);
+    Sleep(3000);
+}
+
+void exibeFluxoDeCaixa(){
+    string linha;
+    ifstream caixa;
+    caixa.open("fluxoDeCaixa.txt");
+
+    if(caixa.is_open()){
+        while(getline(caixa, linha)){
+            cout << linha << endl;
+        }
+    }
+
+    caixa.close();
+}

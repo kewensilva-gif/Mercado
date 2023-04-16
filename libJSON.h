@@ -5,7 +5,7 @@ namespace json{
         produtosOut << "\t\t\t\"Quantidade\": " << produtos.quant << ","<< endl;
         produtosOut << "\t\t\t\"Marca\": \"" << produtos.marca << "\","<< endl;
         produtosOut << "\t\t\t\"Custo\": " << produtos.custo << "," << endl;
-        produtosOut << "\t\t\t\"Valor\": " << produtos.valor << "," << endl;
+        produtosOut << "\t\t\t\"Venda\": " << produtos.venda << "," << endl;
         produtosOut << "\t\t\t\"id\": " << ++produtos.id << endl;
     }
     // Esta função cria o arquivo json caso ele não exista e se existir ela o sobrescreve
@@ -98,7 +98,7 @@ namespace json{
             if(produtosInOut.is_open()){
                 while(getline(produtosInOut, linha)){
                     cont2++;
-                    if(cont2 >= cont-TAM && cont2 <= cont+1){
+                    if(cont2 >= cont-TAM-1 && cont2 <= cont+1){
                         continue;
                     } else if("\t\t}," == linha && ehUltimo){
                         arquivo += "\t\t}\n";
@@ -113,8 +113,12 @@ namespace json{
             produtosInOut.open("produtos.json", ios::out);
             produtosInOut << arquivo;
             produtosInOut.close();
+
+            cout << "Produto removido com sucesso!" << endl;
+            Sleep(2000);
         } else {
             cout << "O ID não existe!" << endl;
+            Sleep(2000);
         }
     }
 

@@ -113,9 +113,6 @@ int main()
                     json::modificaQuantidade(pos, quant);
                     txt::modificaQuantidade(pos, quant);
                     break;
-                case 5:
-                    system("cls");
-                    break;
                 case 0:
                     cout << "saindo..." << endl;
                     break;
@@ -155,8 +152,10 @@ int main()
                     Sleep(3000);
                     break;
                 case 2:
-                fluxoDeCaixa();
-                Sleep(3000);
+                system("cls");
+                exibeFluxoDeCaixa();
+                cout << "Voltar ao menu? <s>";
+                cin >> opcao;
                     break;
                 case 0:
                     cout << "saindo..." << endl;

@@ -1,14 +1,7 @@
 **Produto**
-Nome: da
+Nome: feijao
 Quantidade: 3
-Marca: a
+Marca: da
 Custo: 3
-Valor: 2
+Venda: 4
 id: 0
-**Produto**
-Nome: 3
-Quantidade: 2
-Marca: 3
-Custo: 2
-Valor: 2
-id: 1

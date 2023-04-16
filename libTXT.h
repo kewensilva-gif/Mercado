@@ -5,7 +5,7 @@ namespace txt{
         produtosOut << "Quantidade: " << produtos.quant << endl;
         produtosOut << "Marca: " << produtos.marca << endl;
         produtosOut << "Custo: " << produtos.custo << endl;
-        produtosOut << "Valor: " << produtos.valor << endl;
+        produtosOut << "Venda: " << produtos.venda << endl;
         produtosOut << "id: " << ++produtos.id << endl;
     }
 
@@ -46,7 +46,7 @@ namespace txt{
             if(produtosInOut.is_open()){
                 while(getline(produtosInOut, linha)){
                     cont2++;
-                    if(cont2 >= cont-TAM && cont2 <= cont){
+                    if(cont2 >= cont-TAM-1 && cont2 <= cont){
                         continue;
                     } else {
                         arquivo += linha + "\n";
@@ -63,7 +63,9 @@ namespace txt{
     }
 
     void modificaQuantidade(int id, int quant){
-        string pesquisa, linha, strQuant, strAcum, arquivo, str;
+        struct estoque produtos;
+        produtos.quant = quant;
+        string pesquisa, linha, strQuant, strAcum, strVenda, strCusto, arquivo, str;
         bool checkId = false;
         int cont, cont2;
         cont = cont2 = 0;
@@ -79,6 +81,12 @@ namespace txt{
                     cont2++;
                     if(cont2 == cont + 1 - TAM){
                         strQuant = linha;
+                    }
+                    if(cont2 == cont + 3 - TAM){
+                        strCusto = linha;
+                    }
+                    if(cont2 == cont + 4 - TAM){
+                        strVenda = linha;
                         break;
                     }
                 }
@@ -86,6 +94,7 @@ namespace txt{
 
             produtosInOut.close();
 
+            pegaCustoEVenda(strCusto, strVenda, produtos);
             for(int i = 0; i < strlen(strQuant.c_str()); i++){
                 if(strQuant[i] == ':'){
                     i += 2;
