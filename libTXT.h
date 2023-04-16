@@ -67,7 +67,7 @@ namespace txt{
         cont = cont2 = 0;
 
         pesquisa = "id: " + to_string(id);
-
+        cout << pesquisa << endl;
         pegaQuantLinhas(cont, pesquisa, "produtos.txt", checkId);
           if(checkId){
             fstream produtosInOut;
@@ -75,7 +75,7 @@ namespace txt{
             if(produtosInOut.is_open()){
                 while(getline(produtosInOut, linha)){
                     cont2++;
-                    if(cont2 == cont + 2 - TAM){
+                    if(cont2 == cont + 1 - TAM){
                         strQuant = linha;
                         break;
                     }
@@ -108,7 +108,7 @@ namespace txt{
 
                 while(getline(produtosInOut, linha)){
                     cont2++;
-                    if(cont2 == cont + 2 - TAM){
+                    if(cont2 == cont + 1 - TAM){
                         arquivo += str + "\n";
                     } else {
                         arquivo += linha + "\n";

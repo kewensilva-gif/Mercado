@@ -133,7 +133,7 @@ namespace json{
             if(produtosInOut.is_open()){
                 while(getline(produtosInOut, linha)){
                     cont2++;
-                    if(cont2 == cont + 2 - TAM){
+                    if(cont2 == cont + 1 - TAM){
                         strQuant = linha;
                         break;
                     }
@@ -165,7 +165,7 @@ namespace json{
 
                 while(getline(produtosInOut, linha)){
                     cont2++;
-                    if(cont2 == cont + 2 - TAM){
+                    if(cont2 == cont + 1 - TAM){
                         arquivo += str + ",\n";
                     } else {
                         arquivo += linha + "\n";

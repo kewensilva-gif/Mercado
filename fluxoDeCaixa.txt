@@ -1,0 +1,3 @@
+Custo total: R$166
+Valor total possível de vendas: R$216.8
+Lucro possível: R$50.8

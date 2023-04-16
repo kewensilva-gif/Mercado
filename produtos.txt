@@ -7,8 +7,8 @@ Valor: 4
 id: 0
 **Produto**
 Nome: FEIJÇO
-Quantidade: 32
-Marca: A
+Quantidade: 29
+Marca: tio joao
 Custo: 5
-Valor: 3.4
+Valor: 6,4
 id: 1

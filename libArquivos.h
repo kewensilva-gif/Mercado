@@ -155,25 +155,57 @@ float pegaValor(int id){
     }
 }
 
-float calculaCusto(){
+void calculaCustoELucro(float& custo, float& totalVendas){
+    custo = totalVendas = 0;
     string linha, acum;
-    float custo = 0;
+    int quant;
     ifstream custoTotal;
     custoTotal.open("produtos.txt");
 
     if(custoTotal.is_open()){
         while(getline(custoTotal, linha)){
+            if(linha[0] == 'Q'){
+                acum = "";
+                for(int i = 12; i < strlen(linha.c_str()); i++){
+                    acum += linha[i];
+                }
+
+                quant = stoi(acum);
+            }
             if(linha[0] == 'C'){
                 acum = "";
                 for(int i = 7; i < strlen(linha.c_str()); i++){
                     acum += linha[i];
                 }
-                custo += stof(acum);
+                custo += stof(acum) * quant;
+            }
+            if(linha[0] == 'V'){
+                acum = "";
+                for(int i = 7; i < strlen(linha.c_str()); i++){
+                    acum += linha[i];
+                }
+                totalVendas += stof(acum) * quant;
             }
         }
     }
 
     custoTotal.close();
+}
 
-    return custo;
+void fluxoDeCaixa(){
+    float custo, vendaTotalEstoque, lucroPossivel;
+
+    calculaCustoELucro(custo, vendaTotalEstoque);
+
+    lucroPossivel = vendaTotalEstoque - custo;
+
+    ofstream fluxo;
+
+    fluxo.open("fluxoDeCaixa.txt");
+
+    fluxo << "Custo total: R$" << custo << endl;
+    fluxo << "Valor total possível de vendas: R$" << vendaTotalEstoque << endl;
+    fluxo << "Lucro possível: R$" << lucroPossivel << endl;
+
+    fluxo.close();
 }

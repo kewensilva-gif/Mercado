@@ -79,7 +79,7 @@ int main()
                             } while(opcao != 'n' && opcao != 'N');
                         }
                     }
-
+                    fluxoDeCaixa();
                     break;
 
                 case 2:
@@ -137,6 +137,9 @@ int main()
                         cin >> produtos.id;
                         cout << "Digite a quantidade: ";
                         cin >> produtos.quant;
+                        quant = -produtos.quant;
+                        txt::modificaQuantidade(produtos.id, quant);
+                        json::modificaQuantidade(produtos.id, quant);
                         cout << "Deseja continuar? <s - n> ";
                         cin >> opcao;
 
@@ -151,7 +154,7 @@ int main()
                     Sleep(3000);
                     break;
                 case 2:
-                cout << calculaCusto() << endl;
+                fluxoDeCaixa();
                 Sleep(3000);
                     break;
                 case 0:
