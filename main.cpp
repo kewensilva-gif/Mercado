@@ -15,7 +15,7 @@ using namespace std;
 
 int main()
 {
-    setlocale(LC_ALL, "Portuguese");
+    setlocale(LC_ALL, "");
     int opMain, opEst, opCad, opCaixa, pos, quant;
     char opcao;
     char continuar;
@@ -24,6 +24,7 @@ int main()
 
     do{
         menuPrincipal(opMain);
+
         switch(opMain){
         case 1:
             do{
@@ -150,7 +151,8 @@ int main()
                     Sleep(3000);
                     break;
                 case 2:
-
+                cout << calculaCusto() << endl;
+                Sleep(3000);
                     break;
                 case 0:
                     cout << "saindo..." << endl;

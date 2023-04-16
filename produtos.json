@@ -7,6 +7,14 @@
 			"Custo": 2,
 			"Valor": 4,
 			"id": 0
+		},
+		{
+			"Nome": "FEIJÇO",
+			"Quantidade": 32,
+			"Marca": "A",
+			"Custo": 5,
+			"Valor": 3.4,
+			"id": 1
 		}
 	]
 }

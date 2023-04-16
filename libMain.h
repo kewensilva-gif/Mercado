@@ -27,6 +27,7 @@ void menuPrincipal(int& op){
 
 void menuEstoque(int& op){
     system("cls");
+    cout << "ESTOQUE" << endl;
     cout << "1 - Criar lista" << endl;
     cout << "2 - Inserir novo produto" << endl;
     cout << "3 - Remover produto" << endl;
@@ -40,21 +41,23 @@ void menuEstoque(int& op){
 
 void menuCadastro(int& op){
     system("cls");
+    cout << "MENU" << endl;
     cout << "1 - Cadastrar novo cliente" << endl;
     cout << "2 - Visualizar clientes cadastrados" << endl;
     cout << "3 - Remove clientes cadastrados" << endl;
     cout << "0 - Voltar ao menu inicial" << endl;
-    cout << "Digite uma opcao: ";
+    cout << "Digite uma opção: ";
 
     cin >> op;
 }
 
 void menuCaixa(int& op){
     system("cls");
+    cout << "CAIXA" << endl;
     cout << "1 - Passar compra" << endl;
     cout << "2 - Verificar entradas e saídas" << endl;
     cout << "0 - Voltar ao menu inicial" << endl;
-    cout << "Digite uma opcao: ";
+    cout << "Digite uma opção: ";
 
     cin >> op;
 }

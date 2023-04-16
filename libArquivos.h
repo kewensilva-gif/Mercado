@@ -155,6 +155,25 @@ float pegaValor(int id){
     }
 }
 
-/*float calculaCusto(){
+float calculaCusto(){
+    string linha, acum;
+    float custo = 0;
+    ifstream custoTotal;
+    custoTotal.open("produtos.txt");
 
-}*/
+    if(custoTotal.is_open()){
+        while(getline(custoTotal, linha)){
+            if(linha[0] == 'C'){
+                acum = "";
+                for(int i = 7; i < strlen(linha.c_str()); i++){
+                    acum += linha[i];
+                }
+                custo += stof(acum);
+            }
+        }
+    }
+
+    custoTotal.close();
+
+    return custo;
+}
