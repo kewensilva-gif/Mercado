@@ -42,7 +42,7 @@ void cadastrarCliente()
     ofstream arquivoClientes("clientes.txt", ios::app);
 
     // Salvar informações do cliente no arquivo em formato TXT com formatação
-    arquivoClientes << "Nome do Cliente: " << setw(30) << left << novoCliente.nome << "ID: " << novoCliente.id << " Debito: R$ " << novoCliente.debito << endl;
+    arquivoClientes << "Nome do Cliente: " << setw(30) << left << novoCliente.nome << "ID: " << novoCliente.id << " Débito: R$ " << novoCliente.debito << endl;
 
     // Fechar arquivo de clientes
     arquivoClientes.close();

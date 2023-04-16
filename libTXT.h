@@ -4,6 +4,7 @@ namespace txt{
         produtosOut << "Nome: " << produtos.nome << endl;
         produtosOut << "Quantidade: " << produtos.quant << endl;
         produtosOut << "Marca: " << produtos.marca << endl;
+        produtosOut << "custo: " << produtos.custo << endl;
         produtosOut << "Valor: " << produtos.valor << endl;
         produtosOut << "id: " << ++produtos.id << endl;
     }

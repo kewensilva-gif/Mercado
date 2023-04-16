@@ -7,6 +7,7 @@ struct estoque {
     string nome;
     int quant;
     string marca;
+    float custo;
     float valor;
     int id;
 };
@@ -48,6 +49,15 @@ void menuCadastro(int& op){
     cin >> op;
 }
 
+void menuCaixa(int& op){
+    system("cls");
+    cout << "1 - Passar compra" << endl;
+    cout << "2 - Verificar entradas e saídas" << endl;
+    cout << "0 - Voltar ao menu inicial" << endl;
+    cout << "Digite uma opcao: ";
+
+    cin >> op;
+}
 
 
 

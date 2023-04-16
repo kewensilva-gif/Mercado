@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string.h>
 #include <locale>
+#include <windows.h>
 #include "libMain.h"
 #include "libArquivos.h"
 #include "libJSON.h"
@@ -15,7 +16,7 @@ using namespace std;
 int main()
 {
     setlocale(LC_ALL, "Portuguese");
-    int opMain, opEst, opCad, pos, quant;
+    int opMain, opEst, opCad, opCaixa, pos, quant;
     char opcao;
     char continuar;
 
@@ -123,6 +124,39 @@ int main()
 
             break;
         case 3:
+            do{
+                menuCaixa(opCaixa);
+                switch(opCaixa){
+                case 1:
+                    float total, pagamento;
+
+                    do{
+                        system("cls");
+                        cout << "Digite o id do produto: ";
+                        cin >> produtos.id;
+                        cout << "Digite a quantidade: ";
+                        cin >> produtos.quant;
+                        cout << "Deseja continuar? <s - n> ";
+                        cin >> opcao;
+
+                        total += (produtos.quant * pegaValor(produtos.id));
+
+                    } while(opcao != 'n' && opcao != 'N');
+
+                    cout << "R$" << total << endl;
+                    cout << "Insira o valor pago: ";
+                    cin >> pagamento;
+                    cout << "Troco: R$" << pagamento - total << endl;
+                    Sleep(3000);
+                    break;
+                case 2:
+
+                    break;
+                case 0:
+                    cout << "saindo..." << endl;
+                    break;
+                }
+            } while(opCaixa);
             break;
         case 0:
             cout << "saindo..." << endl;

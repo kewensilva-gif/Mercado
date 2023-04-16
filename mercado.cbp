@@ -32,8 +32,11 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
-		<Unit filename="arquivoLib.h" />
-		<Unit filename="biblioteca.h" />
+		<Unit filename="Cliente.h" />
+		<Unit filename="libArquivos.h" />
+		<Unit filename="libJSON.h" />
+		<Unit filename="libMain.h" />
+		<Unit filename="libTXT.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />

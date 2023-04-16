@@ -4,6 +4,7 @@ namespace json{
         produtosOut << "\t\t\t\"Nome\": \"" << produtos.nome << "\","<< endl;
         produtosOut << "\t\t\t\"Quantidade\": " << produtos.quant << ","<< endl;
         produtosOut << "\t\t\t\"Marca\": \"" << produtos.marca << "\","<< endl;
+        produtosOut << "\t\t\t\"Custo\": " << produtos.custo << "," << endl;
         produtosOut << "\t\t\t\"Valor\": " << produtos.valor << "," << endl;
         produtosOut << "\t\t\t\"id\": " << ++produtos.id << endl;
     }

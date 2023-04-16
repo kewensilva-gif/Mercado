@@ -1,5 +1,6 @@
 #define TAM 5
-
+#include <stdlib.h>
+#include <string.h>
 /*Esta função utiliza sobrecarga e o seu objetivo é trazer a quantidade de linhas do arquivo
 1 - abre o arquivo e com o auxilio de um contador pega a quantidade de linha
 */
@@ -61,6 +62,8 @@ void pegaDados(struct estoque &produtos){
     cout << "Digite a marca: ";
     cin.ignore();
     getline(cin, produtos.marca);
+    cout << "Digite o custo: ";
+    cin >> produtos.custo;
     cout << "Digite o valor: ";
     cin >> produtos.valor;
 }
@@ -117,3 +120,41 @@ int converteId(){
     id = stoi(aux2);
     return id;
 }
+
+float pegaValor(int id){
+    int cont, cont2 = 0;
+    bool checkId = false;
+    string pesquisa, strQuant, linha;
+    pesquisa = "id: " + to_string(id);
+    pegaQuantLinhas(cont, pesquisa, "produtos.txt", checkId);
+
+    if(checkId){
+            fstream produtosInOut;
+            produtosInOut.open("produtos.txt", ios::in);
+            if(produtosInOut.is_open()){
+                while(getline(produtosInOut, linha)){
+                    cont2++;
+                    if(cont2 == cont + 4 - TAM){
+                        strQuant = linha;
+                        break;
+                    }
+                }
+            }
+
+            produtosInOut.close();
+            string num;
+
+            for(int i = 7; i < strlen(strQuant.c_str()); i++){
+                num += strQuant[i];
+            }
+
+            double venda;
+            venda = stof(num);
+
+            return venda;
+    }
+}
+
+/*float calculaCusto(){
+
+}*/
