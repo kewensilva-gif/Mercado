@@ -56,6 +56,7 @@ int main()
 
                 case 1:
                     system("cls");
+                    cout << "CRIAR LISTA" << endl;
                     produtos.id = 0;
 
                     cout << "Essa função irá sobrescrever tudo que há no arquivo.\nDeseja continuar? <s - n> ";
@@ -85,6 +86,7 @@ int main()
 
                 case 2:
                     system("cls");
+                    cout << "INSERIR NOVO PRODUTO" << endl;
                     do{
                         pegaDados(produtos);
                         produtos.id = converteId();
@@ -98,7 +100,8 @@ int main()
 
                 case 3:
                     system("cls");
-                    cout << "Digite o id do produto: ";
+                    cout << "REMOVER PRODUTO" << endl;
+                    cout << "Digite o ID do produto: ";
                     cin >> pos;
                     json::removerProduto(pos);
                     txt::removerProduto(pos);
@@ -106,15 +109,27 @@ int main()
 
                 case 4:
                     system("cls");
-                    cout << "Digite o id do produto: ";
+                    cout << "ADICIONAR QUANTIDADE AO ESTOQUE" << endl;
+                    cout << "Digite o ID do produto: ";
                     cin >> pos;
                     cout << "Digite a quantidade a ser inserida: ";
                     cin >> quant;
                     json::modificaQuantidade(pos, quant);
                     txt::modificaQuantidade(pos, quant);
                     break;
+
+                case 5:
+                    system("cls");
+                    cout << "VISUALIZAR ESTOQUE" << endl;
+                    visualizarEstoque();
+
+                    cout << "Voltar ao menu? <s>";
+                    cin >> opcao;
+                    break;
                 case 0:
+                    system("cls");
                     cout << "saindo..." << endl;
+                    Sleep(2000);
                     break;
                 default:
                     cout << "Opção inválida. Tente novamente!" << endl;

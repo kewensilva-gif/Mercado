@@ -71,7 +71,7 @@ namespace txt{
         cont = cont2 = 0;
 
         pesquisa = "id: " + to_string(id);
-        cout << pesquisa << endl;
+
         pegaQuantLinhas(cont, pesquisa, "produtos.txt", checkId);
           if(checkId){
             fstream produtosInOut;
@@ -132,9 +132,11 @@ namespace txt{
             produtosInOut.open("produtos.txt", ios::out);
             produtosInOut << arquivo;
             produtosInOut.close();
-
+            cout << "Quantidade alterada com sucesso!" << endl;
+            Sleep(3000);
         } else {
             cout << "O ID não existe!" << endl;
+            Sleep(3000);
         }
     }
 }

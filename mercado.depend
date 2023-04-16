@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1681664178 source:d:\trabalho-prog2\mercado\main.cpp
+1681682860 source:d:\trabalho-prog2\mercado\main.cpp
 	<iostream>
 	<fstream>
 	<string.h>
@@ -18,12 +18,12 @@
 
 1680379364 d:\trabalho-prog2\mercado\arquivolib.h
 
-1681671452 d:\trabalho-prog2\mercado\libmain.h
+1681682809 d:\trabalho-prog2\mercado\libmain.h
 	<iostream>
 	<fstream>
 	<string.h>
 
-1681681205 d:\trabalho-prog2\mercado\libarquivos.h
+1681682325 d:\trabalho-prog2\mercado\libarquivos.h
 	<stdlib.h>
 	<string.h>
 

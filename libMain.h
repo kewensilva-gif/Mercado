@@ -15,9 +15,9 @@ struct estoque {
 void menuPrincipal(int& op){
     system("cls");
     cout << "MENU PRINCIPAL" << endl;
-    cout << "1 - Cadastrar cliente / Visualizar clientes" << endl;
-    cout << "2 - Cadastrar produtos / Visualizar produto" << endl;
-    cout << "3 - Caixa" << endl;
+    cout << "1 - Menu de cadastros" << endl;
+    cout << "2 - Menu de estoque" << endl;
+    cout << "3 - Menu de caixa" << endl;
     cout << "0 - Sair" << endl;
     cout << "Digite a opção desejada: ";
 
@@ -32,6 +32,7 @@ void menuEstoque(int& op){
     cout << "2 - Inserir novo produto" << endl;
     cout << "3 - Remover produto" << endl;
     cout << "4 - Adicionar quantidade ao estoque" << endl;
+    cout << "5 - Visualizar estoque" << endl;
     cout << "0 - Voltar ao menu inicial" << endl;
     cout << "Digite a opção desejada: ";
 

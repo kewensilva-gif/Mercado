@@ -212,15 +212,6 @@ void fluxoDeCaixa(){
     lucroPossivel = vendaTotalEstoque - custo;
 
     preencheFluxoCaixa("fluxoDeCaixa.txt", custo, vendaTotalEstoque, lucroPossivel);
-    /*ofstream fluxo;
-
-    fluxo.open("fluxoDeCaixa.txt");
-
-    fluxo << "Custo total: R$" << custo << endl;
-    fluxo << "Valor total possível de vendas: R$" << vendaTotalEstoque << endl;
-    fluxo << "Lucro possível: R$" << lucroPossivel << endl;
-
-    fluxo.close();*/
 }
 
 void alteraValoresCaixa(struct estoque produtos){
@@ -263,8 +254,6 @@ void alteraValoresCaixa(struct estoque produtos){
 }
 
 void pegaCustoEVenda(string strCusto, string strVenda, struct estoque produtos){
-    cout << strCusto << endl;
-    cout << strVenda << endl;
     string val;
 
 
@@ -279,9 +268,6 @@ void pegaCustoEVenda(string strCusto, string strVenda, struct estoque produtos){
     }
     produtos.venda = stof(val);
 
-    cout << produtos.venda << endl;
-    cout << produtos.custo << endl;
-    cout << produtos.quant << endl;
     alteraValoresCaixa(produtos);
     Sleep(3000);
 }
@@ -298,4 +284,18 @@ void exibeFluxoDeCaixa(){
     }
 
     caixa.close();
+}
+
+void visualizarEstoque(){
+    string linha;
+    ifstream produtosIn;
+    produtosIn.open("produtos.txt");
+
+    if(produtosIn.is_open()){
+        while(getline(produtosIn, linha)){
+            cout << linha << endl;
+        }
+    }
+
+    produtosIn.close();
 }

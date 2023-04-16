@@ -2,7 +2,7 @@
 	"produtos": [ 
 		{
 			"Nome": "feijao",
-			"Quantidade": 3,
+			"Quantidade": 1,
 			"Marca": "da",
 			"Custo": 3,
 			"Venda": 4,
