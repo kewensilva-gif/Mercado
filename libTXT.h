@@ -19,13 +19,16 @@ namespace txt{
         produtosOut.close();
     }
 
-    void inserirProduto(struct estoque produtos){
+    void inserirProduto(struct estoque &produtos){
         ofstream produtosOut;
         produtosOut.open("produtos.txt", ios::app);
 
         dados(produtosOut, produtos);
 
         produtosOut.close();
+
+        alteraValoresCaixa(produtos);
+
     }
 
     void removerProduto(int id){

@@ -74,6 +74,7 @@ int main()
                                 produtos.id = converteId();
                                 json::inserirProduto(produtos);
                                 txt::inserirProduto(produtos);
+
                                 cout << "Deseja continuar? <s - n> ";
                                 cin >> opcao;
                             } while(opcao != 'n' && opcao != 'N');

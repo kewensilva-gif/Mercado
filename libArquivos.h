@@ -209,3 +209,47 @@ void fluxoDeCaixa(){
 
     fluxo.close();
 }
+
+void alteraValoresCaixa(struct estoque produtos){
+    cout << produtos.quant << endl;
+    cout << produtos.custo << endl;
+    cout << produtos.valor << endl;
+    string linha, valores;
+    float val[3], lucro, custo, valorVendas;
+
+    bool entrou = false;
+    ifstream caixa;
+    caixa.open("fluxoDeCaixa.txt");
+
+    if(caixa.is_open()){
+        int j = 0;
+        while(getline(caixa, linha)){
+            entrou = false;
+            valores = "";
+            for(int i = 0; i < strlen(linha.c_str()); i++){
+                if(linha[i] == '$'){
+                    i++;
+                    entrou = true;
+                }
+                if(entrou){
+                    if(linha[i] == '.'){
+                        valores += ',';
+                    } else{
+                        valores += linha[i];
+                    }
+                }
+            }
+            cout << valores << endl;
+            val[j] = stof(valores);
+            j++;
+        }
+    }
+    caixa.close();
+    //cout << valores[1] << endl;
+
+    custo = val[0] + (produtos.quant*produtos.custo);
+    valorVendas = val[1] + (produtos.quant*produtos.valor);
+    lucro = val[2] + (produtos.quant*produtos.valor - produtos.quant*produtos.custo);
+
+
+}
