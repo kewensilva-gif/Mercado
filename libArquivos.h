@@ -192,6 +192,18 @@ void calculaCustoELucro(float& custo, float& totalVendas){
     custoTotal.close();
 }
 
+void preencheFluxoCaixa(string nomeArq, float custo, float valorVenda, float lucro){
+    ofstream fluxo;
+
+    fluxo.open(nomeArq);
+
+    fluxo << "Custo total: R$" << custo << endl;
+    fluxo << "Valor total possível de vendas: R$" << valorVenda << endl;
+    fluxo << "Lucro possível: R$" << lucro << endl;
+
+    fluxo.close();
+}
+
 void fluxoDeCaixa(){
     float custo, vendaTotalEstoque, lucroPossivel;
 
@@ -199,7 +211,8 @@ void fluxoDeCaixa(){
 
     lucroPossivel = vendaTotalEstoque - custo;
 
-    ofstream fluxo;
+    preencheFluxoCaixa("fluxoDeCaixa.txt", custo, vendaTotalEstoque, lucroPossivel);
+    /*ofstream fluxo;
 
     fluxo.open("fluxoDeCaixa.txt");
 
@@ -207,7 +220,7 @@ void fluxoDeCaixa(){
     fluxo << "Valor total possível de vendas: R$" << vendaTotalEstoque << endl;
     fluxo << "Lucro possível: R$" << lucroPossivel << endl;
 
-    fluxo.close();
+    fluxo.close();*/
 }
 
 void alteraValoresCaixa(struct estoque produtos){
@@ -251,5 +264,7 @@ void alteraValoresCaixa(struct estoque produtos){
     valorVendas = val[1] + (produtos.quant*produtos.valor);
     lucro = val[2] + (produtos.quant*produtos.valor - produtos.quant*produtos.custo);
 
-
+    preencheFluxoCaixa("fluxoDeCaixa.txt", custo, valorVendas, lucro);
 }
+
+

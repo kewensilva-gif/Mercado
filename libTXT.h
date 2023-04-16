@@ -28,7 +28,6 @@ namespace txt{
         produtosOut.close();
 
         alteraValoresCaixa(produtos);
-
     }
 
     void removerProduto(int id){
