@@ -4,6 +4,7 @@ const corpo = document.querySelector("#corpo");
 async function conectaApi(){
     const conexao = await fetch("http://localhost:3000/produtos");
     produtos = await conexao.json();
+
     produtos.forEach((produto)=> {
         corpo.innerHTML += `
             <tr>

@@ -114,10 +114,6 @@ namespace json{
             produtosInOut << arquivo;
             produtosInOut.close();
 
-            cout << "Produto removido com sucesso!" << endl;
-            Sleep(2000);
-        } else {
-            cout << "O ID não existe!" << endl;
             Sleep(2000);
         }
     }
@@ -182,11 +178,7 @@ namespace json{
             produtosInOut.open("produtos.json", ios::out);
             produtosInOut << arquivo;
             produtosInOut.close();
-
-            cout << "Quantidade alterada com sucesso!" << endl;
             Sleep(3000);
-        } else {
-            cout << "O ID não existe!" << endl;
         }
     }
 }

@@ -8,6 +8,7 @@
 #include "libJSON.h"
 #include "libTXT.h"
 #include "Cliente.h"
+#include "libCaixa.h"
 
 
 using namespace std;
@@ -21,6 +22,7 @@ int main()
     char continuar;
 
     struct estoque produtos;
+    struct notaFiscal dados;
 
     do{
         menuPrincipal(opMain);
@@ -139,24 +141,36 @@ int main()
             break;
         case 3:
             do{
+
                 menuCaixa(opCaixa);
                 switch(opCaixa){
                 case 1:
-                    float total, pagamento;
-
+                iniciaArquivo();
+                    float total, pagamento, totalProduto;
+                    int quantidadeItens;
+                    quantidadeItens = 0;
                     do{
                         system("cls");
                         cout << "Digite o id do produto: ";
                         cin >> produtos.id;
                         cout << "Digite a quantidade: ";
                         cin >> produtos.quant;
+
+                        quantidadeItens += produtos.quant;
+
+                        pegaDadosProduto(produtos.id, dados);
+
                         quant = -produtos.quant;
+
                         txt::modificaQuantidade(produtos.id, quant);
                         json::modificaQuantidade(produtos.id, quant);
                         cout << "Deseja continuar? <s - n> ";
                         cin >> opcao;
+                        totalProduto = pegaValor(produtos.id);
+                        total += (produtos.quant * totalProduto);
 
-                        total += (produtos.quant * pegaValor(produtos.id));
+                        dadosCaixaProdutos(dados, produtos, opcao, total);
+
 
                     } while(opcao != 'n' && opcao != 'N');
 
@@ -164,7 +178,9 @@ int main()
                     cout << "Insira o valor pago: ";
                     cin >> pagamento;
                     cout << "Troco: R$" << pagamento - total << endl;
-                    Sleep(3000);
+                    insereContaNaNota(total, pagamento, quantidadeItens);
+                    cout << "Voltar ao menu de caixa? <s> ";
+                    cin >> opcao;
                     break;
                 case 2:
                 system("cls");

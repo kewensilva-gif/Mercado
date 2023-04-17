@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1681682860 source:d:\trabalho-prog2\mercado\main.cpp
+1681760545 source:d:\trabalho-prog2\mercado\main.cpp
 	<iostream>
 	<fstream>
 	<string.h>
@@ -10,6 +10,7 @@
 	"libJSON.h"
 	"libTXT.h"
 	"Cliente.h"
+	"libCaixa.h"
 
 1680379369 d:\trabalho-prog2\mercado\biblioteca.h
 	<iostream>
@@ -18,18 +19,18 @@
 
 1680379364 d:\trabalho-prog2\mercado\arquivolib.h
 
-1681682809 d:\trabalho-prog2\mercado\libmain.h
+1681684023 d:\trabalho-prog2\mercado\libmain.h
 	<iostream>
 	<fstream>
 	<string.h>
 
-1681682325 d:\trabalho-prog2\mercado\libarquivos.h
+1681683589 d:\trabalho-prog2\mercado\libarquivos.h
 	<stdlib.h>
 	<string.h>
 
-1681682000 d:\trabalho-prog2\mercado\libjson.h
+1681752910 d:\trabalho-prog2\mercado\libjson.h
 
-1681681842 d:\trabalho-prog2\mercado\libtxt.h
+1681683216 d:\trabalho-prog2\mercado\libtxt.h
 
 1681613772 d:\trabalho-prog2\mercado\cliente.h
 	<iostream>
@@ -37,4 +38,6 @@
 	<string>
 	<iomanip>
 	<limits>
+
+1681760402 d:\trabalho-prog2\mercado\libcaixa.h
 

@@ -1,0 +1,20 @@
+{
+	"produtos": [ 
+		{
+			"Nome": "feijao",
+			"Quantidade": 3,
+			"Marca": "tio joao",
+			"PrecoUnidade": 3.5,
+			"PrecoTotal": 18,
+			"id": 0
+		}
+	],
+	"conta": [ 
+		{
+			"QuantidadeItens": 3,
+			"Total": 18,
+			"Entrada": 19,
+			"Troco": 1
+		}
+	]
+}
