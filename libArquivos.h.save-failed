@@ -1,8 +1,6 @@
 #define TAM 5
 #include <stdlib.h>
 #include <string.h>
-
-
 /*Esta função utiliza sobrecarga e o seu objetivo é trazer a quantidade de linhas do arquivo
 1 - abre o arquivo e com o auxilio de um contador pega a quantidade de linha
 */
@@ -66,11 +64,8 @@ void pegaDados(struct estoque &produtos){
     getline(cin, produtos.marca);
     cout << "Digite o custo: ";
     cin >> produtos.custo;
-
-    produtos.venda = (produtos.custo * 1.8);
-    //cout << "Digite o valor de venda: ";
-    //cin >> produtos.venda;
-
+    cout << "Digite o valor de venda: ";
+    cin >> produtos.venda;
 }
 
 /* Esta função pega o id do último objeto inserido no json da seguinte forma:

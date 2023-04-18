@@ -156,29 +156,31 @@ namespace json{
                 }
             }
             quant += stoi(strAcum);
-            str = "\t\t\t\"Quantidade\": " + to_string(quant);
 
-            produtosInOut.open("produtos.json", ios::in);
+            if(quant >= 0){
+                str = "\t\t\t\"Quantidade\": " + to_string(quant);
 
-            if(produtosInOut.is_open()){
-                cont2 = 0;
+                produtosInOut.open("produtos.json", ios::in);
 
-                while(getline(produtosInOut, linha)){
-                    cont2++;
-                    if(cont2 == cont + 1 - TAM){
-                        arquivo += str + ",\n";
-                    } else {
-                        arquivo += linha + "\n";
+                if(produtosInOut.is_open()){
+                    cont2 = 0;
+
+                    while(getline(produtosInOut, linha)){
+                        cont2++;
+                        if(cont2 == cont + 1 - TAM){
+                            arquivo += str + ",\n";
+                        } else {
+                            arquivo += linha + "\n";
+                        }
                     }
                 }
+
+                produtosInOut.close();
+
+                produtosInOut.open("produtos.json", ios::out);
+                produtosInOut << arquivo;
+                produtosInOut.close();
             }
-
-            produtosInOut.close();
-
-            produtosInOut.open("produtos.json", ios::out);
-            produtosInOut << arquivo;
-            produtosInOut.close();
-            Sleep(3000);
         }
     }
 }

@@ -9,6 +9,7 @@
 #include "libTXT.h"
 #include "Cliente.h"
 #include "libCaixa.h"
+#include "libCases.h"
 
 
 using namespace std;
@@ -20,6 +21,7 @@ int main()
     int opMain, opEst, opCad, opCaixa, pos, quant;
     char opcao;
     char continuar;
+    bool checkQuant;
 
     struct estoque produtos;
     struct notaFiscal dados;
@@ -57,7 +59,7 @@ int main()
                 switch(opEst){
 
                 case 1:
-                    system("cls");
+                    /*system("cls");
                     cout << "CRIAR LISTA" << endl;
                     produtos.id = 0;
 
@@ -83,7 +85,8 @@ int main()
                             } while(opcao != 'n' && opcao != 'N');
                         }
                     }
-                    fluxoDeCaixa();
+                    fluxoDeCaixa();*/
+                    criarListaCase(produtos);
                     break;
 
                 case 2:
@@ -114,10 +117,22 @@ int main()
                     cout << "ADICIONAR QUANTIDADE AO ESTOQUE" << endl;
                     cout << "Digite o ID do produto: ";
                     cin >> pos;
-                    cout << "Digite a quantidade a ser inserida: ";
-                    cin >> quant;
+
+                    while(true){
+                        cout << "Digite a quantidade a ser inserida: ";
+                        cin >> quant;
+                        if(quant <= 0){
+                            cout << "Quantidade inválida!\nInsira uma quantidade superior a zero." << endl;
+                        } else {
+                            break;
+                        }
+                    }
                     json::modificaQuantidade(pos, quant);
-                    txt::modificaQuantidade(pos, quant);
+                    txt::modificaQuantidade(pos, quant, checkQuant);
+                    if(checkQuant){
+                        cout << "Quantidade alterada com sucesso!" << endl;
+                        Sleep(1000);
+                    }
                     break;
 
                 case 5:
@@ -153,16 +168,22 @@ int main()
                         system("cls");
                         cout << "Digite o id do produto: ";
                         cin >> produtos.id;
-                        cout << "Digite a quantidade: ";
-                        cin >> produtos.quant;
-
+                        while(true){
+                            cout << "Digite a quantidade: ";
+                            cin >> produtos.quant;
+                            if(produtos.quant <= 0){
+                                cout << "Quantidade inválida!\nInsira uma quantidade superior a zero." << endl;
+                            } else {
+                                break;
+                            }
+                        }
                         quantidadeItens += produtos.quant;
 
                         pegaDadosProduto(produtos.id, dados);
 
                         quant = -produtos.quant;
 
-                        txt::modificaQuantidade(produtos.id, quant);
+                        txt::modificaQuantidade(produtos.id, quant, checkQuant);
                         json::modificaQuantidade(produtos.id, quant);
                         cout << "Deseja continuar? <s - n> ";
                         cin >> opcao;

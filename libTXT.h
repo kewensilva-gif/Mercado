@@ -62,11 +62,12 @@ namespace txt{
         }
     }
 
-    void modificaQuantidade(int id, int quant){
+    void modificaQuantidade(int id, int quant, bool &checkQuant){
         struct estoque produtos;
         produtos.quant = quant;
         string pesquisa, linha, strQuant, strAcum, strVenda, strCusto, arquivo, str;
         bool checkId = false;
+        checkQuant = false;
         int cont, cont2;
         cont = cont2 = 0;
 
@@ -110,33 +111,37 @@ namespace txt{
                 }
             }
             quant += stoi(strAcum);
-            str = "Quantidade: " + to_string(quant);
+            if(quant >= 0){
+                checkQuant = true;
+                str = "Quantidade: " + to_string(quant);
 
-            produtosInOut.open("produtos.txt", ios::in);
+                produtosInOut.open("produtos.txt", ios::in);
 
-            if(produtosInOut.is_open()){
-                cont2 = 0;
+                if(produtosInOut.is_open()){
+                    cont2 = 0;
 
-                while(getline(produtosInOut, linha)){
-                    cont2++;
-                    if(cont2 == cont + 1 - TAM){
-                        arquivo += str + "\n";
-                    } else {
-                        arquivo += linha + "\n";
+                    while(getline(produtosInOut, linha)){
+                        cont2++;
+                        if(cont2 == cont + 1 - TAM){
+                            arquivo += str + "\n";
+                        } else {
+                            arquivo += linha + "\n";
+                        }
                     }
+
+
+                produtosInOut.close();
+
+                produtosInOut.open("produtos.txt", ios::out);
+                produtosInOut << arquivo;
+                produtosInOut.close();
+                } else {
+                    cout << "O ID não existe!" << endl;
+                    Sleep(1000);
                 }
+            } else {
+                cout << "Não há produtos suficientes em estoque!\nInsira outra quantidade." << endl;
             }
-
-            produtosInOut.close();
-
-            produtosInOut.open("produtos.txt", ios::out);
-            produtosInOut << arquivo;
-            produtosInOut.close();
-            cout << "Quantidade alterada com sucesso!" << endl;
-            Sleep(2000);
-        } else {
-            cout << "O ID não existe!" << endl;
-            Sleep(1000);
         }
     }
 }
