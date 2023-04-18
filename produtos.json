@@ -2,7 +2,7 @@
 	"produtos": [ 
 		{
 			"Nome": "feijao",
-			"Quantidade": 7,
+			"Quantidade": -10,
 			"Marca": "tio joao",
 			"Custo": 3.5,
 			"Venda": 3.5,
@@ -15,6 +15,14 @@
 			"Custo": 3.7,
 			"Venda": 3.9,
 			"id": 1
+		},
+		{
+			"Nome": "coca cola",
+			"Quantidade": 3,
+			"Marca": "cola",
+			"Custo": 3,
+			"Venda": 5,
+			"id": 2
 		}
 	]
 }

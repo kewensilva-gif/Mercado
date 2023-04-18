@@ -269,7 +269,6 @@ void pegaCustoEVenda(string strCusto, string strVenda, struct estoque produtos){
     produtos.venda = stof(val);
 
     alteraValoresCaixa(produtos);
-    Sleep(3000);
 }
 
 void exibeFluxoDeCaixa(){

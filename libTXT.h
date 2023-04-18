@@ -133,10 +133,10 @@ namespace txt{
             produtosInOut << arquivo;
             produtosInOut.close();
             cout << "Quantidade alterada com sucesso!" << endl;
-            Sleep(3000);
+            Sleep(2000);
         } else {
             cout << "O ID não existe!" << endl;
-            Sleep(3000);
+            Sleep(1000);
         }
     }
 }

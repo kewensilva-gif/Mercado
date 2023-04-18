@@ -14,7 +14,6 @@ struct notaFiscal{
 };
 
 void pegaDadosProduto(int id, struct notaFiscal &dados){
-    cout<< "ta entrando"<< endl;
     int cont, cont2 = 0;
     int x;
     x = 0;
