@@ -1,6 +1,7 @@
 let contaJson = [];
 const corpo = document.querySelector("#corpo");
 const corpoConta = document.querySelector("#conta");
+const btnImprimir = document.querySelector("#btnImprimir");
 
 async function notaFiscalApi(){
     let produtosConexao = await fetch("http://localhost:3000/produtos");
@@ -44,3 +45,10 @@ async function notaFiscalApi(){
 }
 
 notaFiscalApi();
+
+console.log(btnImprimir)
+function imprimir(){
+    btnImprimir.classList.add("none");
+    print();
+    window.location.reload(true)
+}

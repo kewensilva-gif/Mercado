@@ -9,9 +9,11 @@ body {
     height: 100vh;
     width: 100%;
     display: flex;
+    flex-direction: column;
+    gap: 10px;
     justify-content: center;
     align-items: center;
-    background-color: black;
+    background-color: rgb(255, 255, 255);
     font-size: 11px;
 }
 
@@ -31,6 +33,7 @@ th {
     background-color: #FBF9E4;
     width: 25rem;
     padding: 4rem 0;
+    box-shadow: -1px 0px 28px 0px rgba(0,0,0,0.75);
 }
 
 .cabecalho {
@@ -76,4 +79,25 @@ th {
 
 .bold {
     font-weight: bold;
+}
+
+.none {
+    display: none;
+}
+
+#btnImprimir {
+    width: 25rem;
+    background-color: rgb(30, 91, 116);
+    padding: 1rem;
+    border-radius: 5px;
+    color: #FBF9E4;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+
+#btnImprimir:hover {
+    transition: 1s;
+    background-color: rgb(13, 28, 34);
 }
