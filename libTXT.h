@@ -59,6 +59,11 @@ namespace txt{
             produtosInOut.open("produtos.txt", ios::out);
             produtosInOut << arquivo;
             produtosInOut.close();
+            cout << "Item removido com sucesso!" << endl;
+            Sleep(1000);
+        } else {
+            cout << "O ID não existe!" << endl;
+            Sleep(1000);
         }
     }
 
@@ -141,6 +146,7 @@ namespace txt{
                 }
             } else {
                 cout << "Não há produtos suficientes em estoque!\nInsira outra quantidade." << endl;
+                Sleep(1000);
             }
         }
     }

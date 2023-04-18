@@ -45,7 +45,7 @@ int main()
                     excluirClientePorNome();
                     break;
                 case 0:
-                    cout << "Opção inválida!" << endl;
+                    saindo();
                     break;
                 default:
                     cout << "Opcao invalida!" << endl;
@@ -59,94 +59,25 @@ int main()
                 switch(opEst){
 
                 case 1:
-                    /*system("cls");
-                    cout << "CRIAR LISTA" << endl;
-                    produtos.id = 0;
-
-                    cout << "Essa função irá sobrescrever tudo que há no arquivo.\nDeseja continuar? <s - n> ";
-                    cin >> continuar;
-                    if(continuar == 's' || continuar == 'S'){
-                        pegaDados(produtos);
-                        json::criarLista(produtos);
-                        txt::criarLista(produtos);
-
-                        cout << "Deseja continuar? <s - n> ";
-                        cin >> opcao;
-                        if(opcao == 's' || opcao == 'S'){
-                            system("cls");
-                            do{
-                                pegaDados(produtos);
-                                produtos.id = converteId();
-                                json::inserirProduto(produtos);
-                                txt::inserirProduto(produtos);
-
-                                cout << "Deseja continuar? <s - n> ";
-                                cin >> opcao;
-                            } while(opcao != 'n' && opcao != 'N');
-                        }
-                    }
-                    fluxoDeCaixa();*/
                     criarListaCase(produtos);
                     break;
 
                 case 2:
-                    system("cls");
-                    cout << "INSERIR NOVO PRODUTO" << endl;
-                    do{
-                        pegaDados(produtos);
-                        produtos.id = converteId();
-                        json::inserirProduto(produtos);
-                        txt::inserirProduto(produtos);
-                        cout << "Deseja continuar? <s - n> ";
-                        cin >> opcao;
-                    } while(opcao != 'n' && opcao != 'N');
-
+                    inserirProdutoCase(produtos);
                     break;
 
                 case 3:
-                    system("cls");
-                    cout << "REMOVER PRODUTO" << endl;
-                    cout << "Digite o ID do produto: ";
-                    cin >> pos;
-                    json::removerProduto(pos);
-                    txt::removerProduto(pos);
+                    removerItemCase(produtos);
                     break;
-
                 case 4:
-                    system("cls");
-                    cout << "ADICIONAR QUANTIDADE AO ESTOQUE" << endl;
-                    cout << "Digite o ID do produto: ";
-                    cin >> pos;
-
-                    while(true){
-                        cout << "Digite a quantidade a ser inserida: ";
-                        cin >> quant;
-                        if(quant <= 0){
-                            cout << "Quantidade inválida!\nInsira uma quantidade superior a zero." << endl;
-                        } else {
-                            break;
-                        }
-                    }
-                    json::modificaQuantidade(pos, quant);
-                    txt::modificaQuantidade(pos, quant, checkQuant);
-                    if(checkQuant){
-                        cout << "Quantidade alterada com sucesso!" << endl;
-                        Sleep(1000);
-                    }
+                    adicionarQuantCase(produtos);
                     break;
 
                 case 5:
-                    system("cls");
-                    cout << "VISUALIZAR ESTOQUE" << endl;
-                    visualizarEstoque();
-
-                    cout << "Voltar ao menu? <s>";
-                    cin >> opcao;
+                    visualizarEstoqueCase(produtos);
                     break;
                 case 0:
-                    system("cls");
-                    cout << "saindo..." << endl;
-                    Sleep(2000);
+                    saindo();
                     break;
                 default:
                     cout << "Opção inválida. Tente novamente!" << endl;
@@ -156,67 +87,23 @@ int main()
             break;
         case 3:
             do{
-
                 menuCaixa(opCaixa);
+
                 switch(opCaixa){
                 case 1:
-                iniciaArquivo();
-                    float total, pagamento, totalProduto;
-                    int quantidadeItens;
-                    quantidadeItens = 0;
-                    do{
-                        system("cls");
-                        cout << "Digite o id do produto: ";
-                        cin >> produtos.id;
-                        while(true){
-                            cout << "Digite a quantidade: ";
-                            cin >> produtos.quant;
-                            if(produtos.quant <= 0){
-                                cout << "Quantidade inválida!\nInsira uma quantidade superior a zero." << endl;
-                            } else {
-                                break;
-                            }
-                        }
-                        quantidadeItens += produtos.quant;
-
-                        pegaDadosProduto(produtos.id, dados);
-
-                        quant = -produtos.quant;
-
-                        txt::modificaQuantidade(produtos.id, quant, checkQuant);
-                        json::modificaQuantidade(produtos.id, quant);
-                        cout << "Deseja continuar? <s - n> ";
-                        cin >> opcao;
-                        totalProduto = pegaValor(produtos.id);
-                        total += (produtos.quant * totalProduto);
-
-                        dadosCaixaProdutos(dados, produtos, opcao, total);
-
-
-                    } while(opcao != 'n' && opcao != 'N');
-
-                    cout << "R$" << total << endl;
-                    cout << "Insira o valor pago: ";
-                    cin >> pagamento;
-                    cout << "Troco: R$" << pagamento - total << endl;
-                    insereContaNaNota(total, pagamento, quantidadeItens);
-                    cout << "Voltar ao menu de caixa? <s> ";
-                    cin >> opcao;
+                    passarProdutoCase(produtos, dados);
                     break;
                 case 2:
-                system("cls");
-                exibeFluxoDeCaixa();
-                cout << "Voltar ao menu? <s>";
-                cin >> opcao;
+                    exibeFluxoDeCaixaCase();
                     break;
                 case 0:
-                    cout << "saindo..." << endl;
+                    saindo();
                     break;
                 }
             } while(opCaixa);
             break;
         case 0:
-            cout << "saindo..." << endl;
+            saindo();
             break;
         default:
             cout << "Opção inválida!" << endl;

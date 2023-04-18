@@ -2,9 +2,9 @@
 	"produtos": [ 
 		{
 			"Nome": "feijao",
-			"Quantidade": 11,
-			"Marca": "tio joao",
-			"PrecoUnidade": 3.5,
-			"PrecoTotal": 33,
+			"Quantidade": 1,
+			"Marca": "4",
+			"PrecoUnidade": 5.4,
+			"PrecoTotal": 5,
 			"id": 0
 		},

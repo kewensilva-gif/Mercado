@@ -1,7 +1,7 @@
 **Produto**
 Nome: feijao
-Quantidade: 3
-Marca: d
-Custo: 2
-Venda: 3.6
+Quantidade: 2
+Marca: 4
+Custo: 3
+Venda: 5.4
 id: 0
