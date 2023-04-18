@@ -1,6 +1,6 @@
 **Produto**
 Nome: feijao
-Quantidade: 2
+Quantidade: 3
 Marca: 4
 Custo: 3
 Venda: 5.4

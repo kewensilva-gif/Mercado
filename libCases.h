@@ -135,8 +135,15 @@ void passarProdutoCase(struct estoque produtos, struct notaFiscal dados){
     } while(opcao != 'n' && opcao != 'N');
 
     cout << "R$" << total << endl;
-    cout << "Insira o valor pago: ";
-    cin >> pagamento;
+    while(true){
+        cout << "Insira o valor pago: ";
+        cin >> pagamento;
+        if(pagamento < total){
+            cout << "O pagamento não pode ser menor que o total da compra!" << endl;
+        } else {
+            break;
+        }
+    }
     cout << "Troco: R$" << pagamento - total << endl;
     insereContaNaNota(total, pagamento, quantidadeItens);
     cout << "Voltar ao menu de caixa? <s> ";
