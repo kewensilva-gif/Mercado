@@ -57,7 +57,7 @@ void removerItemCase(struct estoque produtos){
 
 void adicionarQuantCase(struct estoque produtos){
     int pos, quant;
-    bool checkQuant;
+    bool checkQuant, check;
 
     system("cls");
     cout << "ADICIONAR QUANTIDADE AO ESTOQUE" << endl;
@@ -74,7 +74,7 @@ void adicionarQuantCase(struct estoque produtos){
        }
     }
     json::modificaQuantidade(pos, quant);
-    txt::modificaQuantidade(pos, quant, checkQuant);
+    txt::modificaQuantidade(pos, quant, checkQuant, true, check);
 
     if(checkQuant){
         cout << "Quantidade alterada com sucesso!" << endl;
@@ -98,12 +98,14 @@ void visualizarEstoqueCase(struct estoque produtos){
 void passarProdutoCase(struct estoque produtos, struct notaFiscal dados){
     char opcao;
     int quant;
-    bool checkQuant;
+    bool checkQuant, validQuant;
     iniciaArquivo();
-    float total, pagamento, totalProduto;
+    float totalVendaProduto, pagamento, totalCustoProduto, venda, custo;
+    totalCustoProduto = totalVendaProduto = 0;
     int quantidadeItens;
     quantidadeItens = 0;
     do{
+        validQuant = false;
         system("cls");
         cout << "Digite o id do produto: ";
         cin >> produtos.id;
@@ -122,30 +124,35 @@ void passarProdutoCase(struct estoque produtos, struct notaFiscal dados){
 
         quant = -produtos.quant;
 
-        txt::modificaQuantidade(produtos.id, quant, checkQuant);
+        txt::modificaQuantidade(produtos.id, quant, checkQuant, false, validQuant);
         json::modificaQuantidade(produtos.id, quant);
         cout << "Deseja continuar? <s - n> ";
         cin >> opcao;
-        totalProduto = pegaValor(produtos.id);
-        total += (produtos.quant * totalProduto);
+        pegaValor(produtos.id, venda, custo);
 
-        dadosCaixaProdutos(dados, produtos, opcao, total);
+        if(validQuant){
+            totalVendaProduto += (produtos.quant * venda);
+            totalCustoProduto += (produtos.quant * custo);
 
+            dadosCaixaProdutos(dados, produtos, opcao, totalVendaProduto);
+        }
 
     } while(opcao != 'n' && opcao != 'N');
-
-    cout << "R$" << total << endl;
-    while(true){
-        cout << "Insira o valor pago: ";
-        cin >> pagamento;
-        if(pagamento < total){
-            cout << "O pagamento não pode ser menor que o total da compra!" << endl;
-        } else {
-            break;
+    if(validQuant){
+        alteraValoresCaixaParcial(totalVendaProduto, totalCustoProduto);
+        cout << "Total a pagar R$" << totalVendaProduto << endl;
+        while(true){
+            cout << "Insira o valor pago: ";
+            cin >> pagamento;
+            if(pagamento < totalVendaProduto){
+                cout << "O pagamento não pode ser menor que o total da compra!" << endl;
+            } else {
+                break;
+            }
         }
+        cout << "Troco: R$" << pagamento - totalVendaProduto << endl;
+        insereContaNaNota(totalVendaProduto, pagamento, quantidadeItens);
     }
-    cout << "Troco: R$" << pagamento - total << endl;
-    insereContaNaNota(total, pagamento, quantidadeItens);
     cout << "Voltar ao menu de caixa? <s> ";
     cin >> opcao;
 }

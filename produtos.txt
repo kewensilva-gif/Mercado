@@ -1,7 +1,21 @@
 **Produto**
-Nome: feijao
+Nome: Feijao
+Quantidade: 40
+Marca: tio joao
+Custo: 2
+Venda: 3.6
+id: 0
+**Produto**
+Nome: arroz
 Quantidade: 3
-Marca: 4
+Marca: namorado
 Custo: 3
 Venda: 5.4
-id: 0
+id: 1
+**Produto**
+Nome: coca
+Quantidade: 6
+Marca: cola
+Custo: 4
+Venda: 7.2
+id: 2

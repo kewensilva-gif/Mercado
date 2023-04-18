@@ -67,7 +67,7 @@ namespace txt{
         }
     }
 
-    void modificaQuantidade(int id, int quant, bool &checkQuant){
+    void modificaQuantidade(int id, int quant, bool &checkQuant, bool check, bool &validQuant){
         struct estoque produtos;
         produtos.quant = quant;
         string pesquisa, linha, strQuant, strAcum, strVenda, strCusto, arquivo, str;
@@ -100,7 +100,9 @@ namespace txt{
 
             produtosInOut.close();
 
-            pegaCustoEVenda(strCusto, strVenda, produtos);
+
+            pegaCustoEVenda(strCusto, strVenda, produtos, check);
+
             for(int i = 0; i < strlen(strQuant.c_str()); i++){
                 if(strQuant[i] == ':'){
                     i += 2;
@@ -117,6 +119,7 @@ namespace txt{
             }
             quant += stoi(strAcum);
             if(quant >= 0){
+                validQuant = true;
                 checkQuant = true;
                 str = "Quantidade: " + to_string(quant);
 
@@ -140,12 +143,16 @@ namespace txt{
                 produtosInOut.open("produtos.txt", ios::out);
                 produtosInOut << arquivo;
                 produtosInOut.close();
+                validQuant = true;
                 } else {
                     cout << "O ID não existe!" << endl;
+                    validQuant = false;
                     Sleep(1000);
                 }
+
             } else {
                 cout << "Não há produtos suficientes em estoque!\nInsira outra quantidade." << endl;
+                validQuant = false;
                 Sleep(1000);
             }
         }
