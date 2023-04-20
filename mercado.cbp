@@ -33,12 +33,16 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="Cliente.h" />
+		<Unit filename="gconio.h" />
+		<Unit filename="janela_window.h" />
 		<Unit filename="libArquivos.h" />
 		<Unit filename="libCaixa.h" />
+		<Unit filename="libCases.h" />
 		<Unit filename="libJSON.h" />
 		<Unit filename="libMain.h" />
 		<Unit filename="libTXT.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="switch_SETAS.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

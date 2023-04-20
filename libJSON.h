@@ -47,7 +47,8 @@ namespace json{
                     arquivo += (linha + "\n");
             }
         } else {
-            cout << "Não foi possivel abrir o arquivo" << endl;
+            bordaFunction();
+            gotoxy(63,22);cout << "Nao foi possivel abrir o arquivo" << endl;
         }
 
         produtosIn.close();

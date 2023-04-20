@@ -4,8 +4,20 @@
 
 
 //Assinaturas
+void pegaQuantLinhas(int& cont, string arquivo);
+void pegaDados(struct estoque &produtos);
+string pegaStringUltimoId();
+string pegaStringUltimoId();
+int converteId();
+void pegaValor(int id, float &venda, float &custo);
+void calculaCustoELucro(float& custo, float& totalVendas);
+void preencheFluxoCaixa(string nomeArq, float custo, float valorVenda, float lucro, string arquivo);
+void fluxoDeCaixa();
+void alteraValoresCaixa(struct estoque produtos);
+void visualizarEstoque();
+void preencheFluxoCaixaParcial(string nomeArq, float custo, float valorVenda, float lucro, string arquivo);
+void alteraValoresCaixaParcial(float venda, float custo);
 
-void alteraValoresCaixaParcial(struct estoque produtos);
 
 /*Esta função utiliza sobrecarga e o seu objetivo é trazer a quantidade de linhas do arquivo
 1 - abre o arquivo e com o auxilio de um contador pega a quantidade de linha
@@ -21,7 +33,8 @@ void pegaQuantLinhas(int& cont, string arquivo){
             cont++;
         }
     } else {
-        cout << "Não foi possível abrir o arquivo!" << endl;
+        bordaFunction();
+        gotoxy(63, 22);cout << "Nao foi possivel abrir o arquivo!" << endl;
     }
 
 
@@ -51,7 +64,8 @@ void pegaQuantLinhas(int& cont, string condicao, string arquivo, bool& check){
             }
         }
     } else {
-        cout << "Não foi possível abrir o arquivo!" << endl;
+        bordaFunction();
+        gotoxy(63, 22);cout << "Nao foi possivel abrir o arquivo!" << endl;
     }
 
 
@@ -61,19 +75,37 @@ void pegaQuantLinhas(int& cont, string condicao, string arquivo, bool& check){
 
 // Esta função pega os dados do produto
 void pegaDados(struct estoque &produtos){
+    bordaFunction();
+
+    gotoxy(63,22);
     cout << "Digite o nome do produto: ";
+    gotoxy(63,24);
     cin.ignore();
     getline(cin, produtos.nome);
+    bordaFunction();
+
+
+    gotoxy(63,22);
     cout << "Digite a quantidade: ";
+    gotoxy(63,24);
     cin >> produtos.quant;
+    bordaFunction();
+
+
+    gotoxy(63,22);
     cout << "Digite a marca: ";
+    gotoxy(63,24);
     cin.ignore();
     getline(cin, produtos.marca);
+    bordaFunction();
+
+
+    gotoxy(63,22);
     cout << "Digite o custo: ";
+    gotoxy(63,24);
     cin >> produtos.custo;
 
     produtos.venda = (produtos.custo * 1.8);
-
 }
 
 /* Esta função pega o id do último objeto inserido no json da seguinte forma:
@@ -100,7 +132,8 @@ string pegaStringUltimoId(){
         }
 
     } else {
-        cout << "Não foi possível abrir o arquivo" << endl;
+        bordaFunction();
+        gotoxy(63, 22);cout << "Nao foi possivel abrir o arquivo!" << endl;
     }
 
     produtosIn.close();
@@ -157,18 +190,12 @@ void pegaValor(int id, float &venda, float &custo){
             string num;
             num = "";
             for(int i = 7; i < strlen(strVenda.c_str()); i++){
-                if(strVenda[i] == '.'){
-                    strVenda[i] = ',';
-                }
                 num += strVenda[i];
             }
 
             venda = stof(num);
             num = "";
             for(int i = 7; i < strlen(strCusto.c_str()); i++){
-                if(strCusto[i] == '.'){
-                    strCusto[i] = ',';
-                }
                 num += strCusto[i];
             }
 
@@ -258,14 +285,12 @@ void alteraValoresCaixa(struct estoque produtos){
                         entrou = true;
                     }
                     if(entrou){
-                        if(linha[i] == '.'){
-                            valores += ',';
-                    } else{
                         valores += linha[i];
                     }
                 }
-            }
+
             val[j] = stof(valores);
+
             j++;
             } else {
                 arquivo += linha + "\n";
@@ -273,6 +298,7 @@ void alteraValoresCaixa(struct estoque produtos){
             cont++;
         }
     }
+
     caixa.close();
 
     custo = val[0] + (produtos.quant*produtos.custo);
@@ -303,12 +329,14 @@ void pegaCustoEVenda(string strCusto, string strVenda, struct estoque produtos, 
 
 void exibeFluxoDeCaixa(){
     string linha;
+    int y;
+    y = 18;
     ifstream caixa;
     caixa.open("fluxoDeCaixa.txt");
 
     if(caixa.is_open()){
         while(getline(caixa, linha)){
-            cout << linha << endl;
+            gotoxy(63,y++);cout << linha << endl;
         }
     }
 
@@ -318,15 +346,19 @@ void exibeFluxoDeCaixa(){
 void visualizarEstoque(){
     string linha;
     ifstream produtosIn;
+    int num;
+    num = 3;
     produtosIn.open("produtos.txt");
 
     if(produtosIn.is_open()){
         while(getline(produtosIn, linha)){
-            cout << linha << endl;
+            gotoxy(2, num++);cout << linha << endl;
         }
     }
 
     produtosIn.close();
+
+    gotoxy(2, num + 5);system("Pause");
 }
 
 
@@ -364,11 +396,7 @@ void alteraValoresCaixaParcial(float venda, float custo){
                         entrou = true;
                     }
                     if(entrou){
-                        if(linha[i] == '.'){
-                            valores += ',';
-                        } else{
-                            valores += linha[i];
-                        }
+                        valores += linha[i];
                     }
                 }
                 val[j] = stof(valores);

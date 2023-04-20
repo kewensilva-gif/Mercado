@@ -1,20 +1,33 @@
-// switch cases estoque
+//Assinaturas
+void criarListaCase(struct estoque produtos);
+void inserirProdutoCase(struct estoque produtos);
+void removerItemCase(struct estoque produtos);
+void adicionarQuantCase(struct estoque produtos);
+void visualizarEstoqueCase(struct estoque produtos);
+void passarProdutoCase(struct estoque produtos, struct notaFiscal dados);
+void exibeFluxoDeCaixaCase();
+
+
 
 void criarListaCase(struct estoque produtos){
     char opcao, continuar;
-    system("cls");
-    cout << "CRIAR LISTA" << endl;
+
+    bordaFunction();
+
+    gotoxy(63,18);cout << "CRIAR LISTA" << endl;
+    gotoxy(63,22);cout << "Essa funcao sobrescrevera todo arquivo";
+    gotoxy(63,23);cout <<"Deseja continuar? <s - n> ";
+    gotoxy(63,25);cin >> continuar;
+
     produtos.id = 0;
 
-    cout << "Essa função irá sobrescrever tudo que há no arquivo.\nDeseja continuar? <s - n> ";
-    cin >> continuar;
     if(continuar == 's' || continuar == 'S'){
         pegaDados(produtos);
         json::criarLista(produtos);
         txt::criarLista(produtos);
-
-        cout << "Deseja continuar? <s - n> ";
-        cin >> opcao;
+        bordaFunction();
+        gotoxy(63,22);cout << "Deseja continuar? <s - n> ";
+        gotoxy(63,24);cin >> opcao;
         if(opcao == 's' || opcao == 'S'){
             system("cls");
             do{
@@ -23,8 +36,9 @@ void criarListaCase(struct estoque produtos){
                 json::inserirProduto(produtos);
                 txt::inserirProduto(produtos);
 
-                cout << "Deseja continuar? <s - n> ";
-                cin >> opcao;
+                bordaFunction();
+                gotoxy(63,22);cout << "Deseja continuar? <s - n> ";
+                gotoxy(63,24);cin >> opcao;
             } while(opcao != 'n' && opcao != 'N');
         }
     }
@@ -33,24 +47,30 @@ void criarListaCase(struct estoque produtos){
 
 void inserirProdutoCase(struct estoque produtos){
     char opcao;
-    system("cls");
+
+    gotoxy(63,18);
     cout << "INSERIR NOVO PRODUTO" << endl;
     do{
         pegaDados(produtos);
         produtos.id = converteId();
         json::inserirProduto(produtos);
         txt::inserirProduto(produtos);
+
+        bordaFunction();
+
+        gotoxy(63,22);
         cout << "Deseja continuar? <s - n> ";
+        gotoxy(63,24);
         cin >> opcao;
     } while(opcao != 'n' && opcao != 'N');
 }
 
 void removerItemCase(struct estoque produtos){
     int pos;
-    system("cls");
-    cout << "REMOVER PRODUTO" << endl;
-    cout << "Digite o ID do produto: ";
-    cin >> pos;
+    bordaFunction();
+    gotoxy(63,18);cout << "REMOVER PRODUTO" << endl;
+    gotoxy(63,22);cout << "Digite o ID do produto: ";
+    gotoxy(63,24);cin >> pos;
     json::removerProduto(pos);
     txt::removerProduto(pos);
 }
@@ -59,16 +79,20 @@ void adicionarQuantCase(struct estoque produtos){
     int pos, quant;
     bool checkQuant, check;
 
-    system("cls");
-    cout << "ADICIONAR QUANTIDADE AO ESTOQUE" << endl;
-    cout << "Digite o ID do produto: ";
-    cin >> pos;
+    bordaFunction();
+    gotoxy(63,18);cout << "ADICIONAR QUANTIDADE AO ESTOQUE" << endl;
+    gotoxy(63,22);cout << "Digite o ID do produto: ";
+    gotoxy(63,24);cin >> pos;
 
     while(true){
-       cout << "Digite a quantidade a ser inserida: ";
-       cin >> quant;
+        bordaFunction();
+        gotoxy(63,18);cout << "ADICIONAR QUANTIDADE AO ESTOQUE" << endl;
+        gotoxy(63,22);cout << "Digite a quantidade a ser inserida: ";
+        gotoxy(63,24);cin >> quant;
        if(quant <= 0){
-          cout << "Quantidade inválida!\nInsira uma quantidade superior a zero." << endl;
+            bordaFunction();
+            gotoxy(63,22);cout << "Quantidade invalida!\nInsira uma quantidade superior a zero." << endl;
+            Sleep(1000);
        } else {
            break;
        }
@@ -76,8 +100,9 @@ void adicionarQuantCase(struct estoque produtos){
     json::modificaQuantidade(pos, quant);
     txt::modificaQuantidade(pos, quant, checkQuant, true, check);
 
-    if(checkQuant){
-        cout << "Quantidade alterada com sucesso!" << endl;
+    if(!checkQuant){
+        bordaFunction();
+        gotoxy(63,22);cout << "Quantidade alterada com sucesso!" << endl;
         Sleep(1000);
     }
 
@@ -86,11 +111,11 @@ void adicionarQuantCase(struct estoque produtos){
 void visualizarEstoqueCase(struct estoque produtos){
     char opcao;
     system("cls");
-    cout << "VISUALIZAR ESTOQUE" << endl;
+    textbackground(DARKGRAY);
+    system("cls");
+    textcolor(WHITE);
+    gotoxy(2,0);cout << "VISUALIZAR ESTOQUE" << endl;
     visualizarEstoque();
-
-    cout << "Voltar ao menu? <s>";
-    cin >> opcao;
 }
 
 // switch cases caixa
@@ -106,14 +131,17 @@ void passarProdutoCase(struct estoque produtos, struct notaFiscal dados){
     quantidadeItens = 0;
     do{
         validQuant = false;
-        system("cls");
-        cout << "Digite o id do produto: ";
-        cin >> produtos.id;
+        bordaFunction();
+        gotoxy(63,21);cout << "Digite o ID do produto: ";
+        gotoxy(63,22);cin >> produtos.id;
         while(true){
-            cout << "Digite a quantidade: ";
-            cin >> produtos.quant;
+            bordaFunction();
+            gotoxy(63,21);cout << "Digite a quantidade: ";
+            gotoxy(63,22);cin >> produtos.quant;
             if(produtos.quant <= 0){
-                cout << "Quantidade inválida!\nInsira uma quantidade superior a zero." << endl;
+                bordaFunction();
+                gotoxy(63,22);cout << "Quantidade invalida!\nInsira uma quantidade superior a zero." << endl;
+                Sleep(1000);
             } else {
                 break;
             }
@@ -126,8 +154,9 @@ void passarProdutoCase(struct estoque produtos, struct notaFiscal dados){
 
         txt::modificaQuantidade(produtos.id, quant, checkQuant, false, validQuant);
         json::modificaQuantidade(produtos.id, quant);
-        cout << "Deseja continuar? <s - n> ";
-        cin >> opcao;
+        bordaFunction();
+        gotoxy(63,21);cout << "Deseja continuar? <s - n> ";
+        gotoxy(63,22);cin >> opcao;
         pegaValor(produtos.id, venda, custo);
 
         if(validQuant){
@@ -140,33 +169,32 @@ void passarProdutoCase(struct estoque produtos, struct notaFiscal dados){
     } while(opcao != 'n' && opcao != 'N');
     if(validQuant){
         alteraValoresCaixaParcial(totalVendaProduto, totalCustoProduto);
-        cout << "Total a pagar R$" << totalVendaProduto << endl;
         while(true){
-            cout << "Insira o valor pago: ";
-            cin >> pagamento;
+            bordaFunction();
+            gotoxy(63,21);cout << "Total a pagar R$" << totalVendaProduto << endl;
+            gotoxy(63,22);cout << "Insira o valor pago: ";
+            gotoxy(63,23);cin >> pagamento;
             if(pagamento < totalVendaProduto){
-                cout << "O pagamento não pode ser menor que o total da compra!" << endl;
+                bordaFunction();
+                gotoxy(63,24);cout << "O pagamento não pode ser\nmenor que o total da compra!" << endl;
+                Sleep(1000);
             } else {
                 break;
             }
         }
-        cout << "Troco: R$" << pagamento - totalVendaProduto << endl;
+        gotoxy(63,24);cout << "Troco: R$" << pagamento - totalVendaProduto << endl;
         insereContaNaNota(totalVendaProduto, pagamento, quantidadeItens);
     }
-    cout << "Voltar ao menu de caixa? <s> ";
-    cin >> opcao;
+    bordaFunction();
+    gotoxy(63,21);cout << "Voltar ao menu de caixa? <s> ";
+    gotoxy(63,22);cin >> opcao;
 }
 
 void exibeFluxoDeCaixaCase(){
     char opcao;
-    system("cls");
+    bordaFunction();
     exibeFluxoDeCaixa();
-    cout << "Voltar ao menu? <s>";
-    cin >> opcao;
+    gotoxy(63,27);cout << "Voltar ao menu? <s>";
+    gotoxy(63,28);cin >> opcao;
 }
 
-void saindo(){
-    system("cls");
-    cout << "saindo..." << endl;
-    Sleep(2000);
-}

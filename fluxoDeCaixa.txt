@@ -1,7 +1,7 @@
-Custo total: R$177
-Valor total possível de vendas: R$275.4
-Lucro possível: R$98.4
+Custo total: R$27
+Valor total possível de vendas: R$48.6
+Lucro possível: R$21.6
 
-Total venda: R$54
-Custo dos produtos vendidos: R$30
-Lucro em cima dos produtos vendidos: R$24
+Total venda: R$0
+Custo dos produtos vendidos: R$0
+Lucro em cima dos produtos vendidos: R$0

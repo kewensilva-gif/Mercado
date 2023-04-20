@@ -1,60 +1,81 @@
 #include <iostream>
 #include <fstream>
 #include <string.h>
-#include <locale>
 #include <windows.h>
+
+#include "janela_window.h"
+#include "switch_SETAS.h"
+
 #include "libMain.h"
+#include "Cliente.h"
 #include "libArquivos.h"
 #include "libJSON.h"
 #include "libTXT.h"
-#include "Cliente.h"
 #include "libCaixa.h"
 #include "libCases.h"
+
+#include "gconio.h"
 
 
 using namespace std;
 
-
 int main()
 {
-    setlocale(LC_ALL, "");
-    int opMain, opEst, opCad, opCaixa, pos, quant;
-    char opcao;
-    char continuar;
-    bool checkQuant;
+    system("MODE con cols=180 lines=60");
+
+    int COR_FUNDO=BLUE;
+    int COR_LETRA=WHITE;
+
+    int *INICIO_DE_LINHA = new(int);
+    int *FIM_DE_LINHA    = new(int);
+    int * fim3 = new(int);
+    *INICIO_DE_LINHA = 22;
+    *FIM_DE_LINHA    = 25;
+
+    int opMain, opEst, opCad, opCaixa;
 
     struct estoque produtos;
     struct notaFiscal dados;
 
     do{
+        bordaFunction();
         menuPrincipal(opMain);
+        opMain = arrow(opMain,*INICIO_DE_LINHA,*FIM_DE_LINHA);
 
         switch(opMain){
         case 1:
             do{
+                bordaFunction();
+                float debito;
+
                 menuCadastro(opCad);
+                opCad = arrow(opCad,*INICIO_DE_LINHA,*FIM_DE_LINHA);
+
                 switch(opCad){
                 case 1:
-                    cin.ignore(); // Ignorar o caractere de quebra de linha deixado pelo cin anterior
+                    bordaFunction();
                     cadastrarCliente();
                     break;
                 case 2:
                     visualizarClientes();
                     break;
                 case 3:
-                    excluirClientePorNome();
+                    excluir();
                     break;
-                case 0:
-                    saindo();
-                    break;
-                default:
-                    cout << "Opcao invalida!" << endl;
+                case 4:
+                    excluir(&debito);;
                 }
-            } while(opCad);
+            } while(opCad != 5);
+
             break;
         case 2:
             do{
+                *INICIO_DE_LINHA = 21;
+                *FIM_DE_LINHA    = 26;
                 menuEstoque(opEst);
+                opEst = arrow(opEst,*INICIO_DE_LINHA,*FIM_DE_LINHA);
+                *INICIO_DE_LINHA = 22;
+                *FIM_DE_LINHA = 25;
 
                 switch(opEst){
 
@@ -76,18 +97,18 @@ int main()
                 case 5:
                     visualizarEstoqueCase(produtos);
                     break;
-                case 0:
-                    saindo();
-                    break;
-                default:
-                    cout << "Opção inválida. Tente novamente!" << endl;
                 }
-            } while(opEst);
+            } while(opEst != 6);
 
             break;
         case 3:
             do{
+                bordaFunction();
+
+                *FIM_DE_LINHA  = 24;
                 menuCaixa(opCaixa);
+                opCaixa = arrow(opCaixa,*INICIO_DE_LINHA,*FIM_DE_LINHA);
+                *FIM_DE_LINHA = 25;
 
                 switch(opCaixa){
                 case 1:
@@ -96,24 +117,14 @@ int main()
                 case 2:
                     exibeFluxoDeCaixaCase();
                     break;
-                case 0:
-                    saindo();
-                    break;
                 }
-            } while(opCaixa);
+            } while(opCaixa != 3);
             break;
-        case 0:
-            saindo();
-            break;
-        default:
-            cout << "Opção inválida!" << endl;
         }
-    } while(opMain);
-
+    } while(opMain != 4);
 
     return 0;
 }
-
 
 
 

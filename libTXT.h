@@ -59,10 +59,12 @@ namespace txt{
             produtosInOut.open("produtos.txt", ios::out);
             produtosInOut << arquivo;
             produtosInOut.close();
-            cout << "Item removido com sucesso!" << endl;
+            bordaFunction();
+            gotoxy(63,22);cout << "Item removido com sucesso!" << endl;
             Sleep(1000);
         } else {
-            cout << "O ID não existe!" << endl;
+            bordaFunction();
+            gotoxy(63,22);cout << "O ID não existe!" << endl;
             Sleep(1000);
         }
     }
@@ -145,13 +147,15 @@ namespace txt{
                 produtosInOut.close();
                 validQuant = true;
                 } else {
-                    cout << "O ID não existe!" << endl;
+                    bordaFunction();
+                    gotoxy(63,22);cout << "O ID não existe!" << endl;
                     validQuant = false;
                     Sleep(1000);
                 }
 
             } else {
-                cout << "Não há produtos suficientes em estoque!\nInsira outra quantidade." << endl;
+                bordaFunction();
+                gotoxy(63,22);cout << "Não há produtos suficientes em estoque!\nInsira outra quantidade." << endl;
                 validQuant = false;
                 Sleep(1000);
             }

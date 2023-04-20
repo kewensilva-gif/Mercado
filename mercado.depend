@@ -1,17 +1,19 @@
 # depslib dependency file v1.0
-1681817503 source:d:\trabalho-prog2\mercado\main.cpp
+1682008591 source:d:\trabalho-prog2\mercado\main.cpp
 	<iostream>
 	<fstream>
 	<string.h>
-	<locale>
 	<windows.h>
+	"janela_window.h"
+	"switch_SETAS.h"
 	"libMain.h"
+	"Cliente.h"
 	"libArquivos.h"
 	"libJSON.h"
 	"libTXT.h"
-	"Cliente.h"
 	"libCaixa.h"
 	"libCases.h"
+	"gconio.h"
 
 1680379369 d:\trabalho-prog2\mercado\biblioteca.h
 	<iostream>
@@ -20,24 +22,40 @@
 
 1680379364 d:\trabalho-prog2\mercado\arquivolib.h
 
-1681814566 d:\trabalho-prog2\mercado\libmain.h
+1682008639 d:\trabalho-prog2\mercado\libmain.h
 
-1681848977 d:\trabalho-prog2\mercado\libarquivos.h
+1682008935 d:\trabalho-prog2\mercado\libarquivos.h
 	<stdlib.h>
 	<string.h>
 
-1681812757 d:\trabalho-prog2\mercado\libjson.h
+1681999977 d:\trabalho-prog2\mercado\libjson.h
 
-1681846267 d:\trabalho-prog2\mercado\libtxt.h
+1682002617 d:\trabalho-prog2\mercado\libtxt.h
 
-1681613772 d:\trabalho-prog2\mercado\cliente.h
+1682008721 d:\trabalho-prog2\mercado\cliente.h
 	<iostream>
 	<fstream>
 	<string>
 	<iomanip>
 	<limits>
+	"gconio.h"
 
-1681778100 d:\trabalho-prog2\mercado\libcaixa.h
+1681955066 d:\trabalho-prog2\mercado\libcaixa.h
 
-1681849284 d:\trabalho-prog2\mercado\libcases.h
+1682008919 d:\trabalho-prog2\mercado\libcases.h
+
+1681669082 d:\trabalho-prog2\mercado\janela_window.h
+	"gconio.h"
+	<iostream>
+
+1680433102 d:\trabalho-prog2\mercado\gconio.h
+	<stdio.h>
+	<conio.h>
+	<time.h>
+	<windows.h>
+	<sys/ioctl.h>
+	<unistd.h>
+	<termios.h>
+
+1681919196 d:\trabalho-prog2\mercado\switch_setas.h
 

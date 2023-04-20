@@ -1,3 +1,10 @@
+//Assinaturas
+void pegaDadosProduto(int id, struct notaFiscal &dados);
+void dadosCaixaProdutos(struct notaFiscal dados, struct estoque produtos, char opcao, float total);
+void dadosCaixaConta(ofstream& notaOut, float total, float entrada, int quantidade);
+void iniciaArquivo();
+void insereContaNaNota(float total, float entrada, int quantidade);
+
 // Nota fiscal
 struct notaFiscal{
     string nome;
