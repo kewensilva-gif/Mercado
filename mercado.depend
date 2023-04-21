@@ -24,13 +24,13 @@
 
 1682008639 d:\trabalho-prog2\mercado\libmain.h
 
-1682008935 d:\trabalho-prog2\mercado\libarquivos.h
+1682041393 d:\trabalho-prog2\mercado\libarquivos.h
 	<stdlib.h>
 	<string.h>
 
 1681999977 d:\trabalho-prog2\mercado\libjson.h
 
-1682002617 d:\trabalho-prog2\mercado\libtxt.h
+1682041200 d:\trabalho-prog2\mercado\libtxt.h
 
 1682008721 d:\trabalho-prog2\mercado\cliente.h
 	<iostream>
@@ -42,7 +42,7 @@
 
 1681955066 d:\trabalho-prog2\mercado\libcaixa.h
 
-1682008919 d:\trabalho-prog2\mercado\libcases.h
+1682040966 d:\trabalho-prog2\mercado\libcases.h
 
 1681669082 d:\trabalho-prog2\mercado\janela_window.h
 	"gconio.h"

@@ -64,7 +64,7 @@ namespace txt{
             Sleep(1000);
         } else {
             bordaFunction();
-            gotoxy(63,22);cout << "O ID não existe!" << endl;
+            gotoxy(63,22);cout << "O ID nao existe!" << endl;
             Sleep(1000);
         }
     }
@@ -148,14 +148,15 @@ namespace txt{
                 validQuant = true;
                 } else {
                     bordaFunction();
-                    gotoxy(63,22);cout << "O ID não existe!" << endl;
+                    gotoxy(63,22);cout << "O ID nao existe!" << endl;
                     validQuant = false;
                     Sleep(1000);
                 }
 
             } else {
                 bordaFunction();
-                gotoxy(63,22);cout << "Não há produtos suficientes em estoque!\nInsira outra quantidade." << endl;
+                gotoxy(63,22);cout << "Nao ha produtos suficientes em estoque!" << endl;
+                gotoxy(63,23);cout << "Insira outra quantidade." << endl;
                 validQuant = false;
                 Sleep(1000);
             }

@@ -168,6 +168,7 @@ void passarProdutoCase(struct estoque produtos, struct notaFiscal dados){
 
     } while(opcao != 'n' && opcao != 'N');
     if(validQuant){
+        cout << fixed << setprecision(2);
         alteraValoresCaixaParcial(totalVendaProduto, totalCustoProduto);
         while(true){
             bordaFunction();
@@ -176,7 +177,8 @@ void passarProdutoCase(struct estoque produtos, struct notaFiscal dados){
             gotoxy(63,23);cin >> pagamento;
             if(pagamento < totalVendaProduto){
                 bordaFunction();
-                gotoxy(63,24);cout << "O pagamento não pode ser\nmenor que o total da compra!" << endl;
+                gotoxy(63,24);cout << "O pagamento nao pode ser" << endl;
+                gotoxy(63,25);cout << "menor que o total da compra!" << endl;
                 Sleep(1000);
             } else {
                 break;
@@ -184,17 +186,14 @@ void passarProdutoCase(struct estoque produtos, struct notaFiscal dados){
         }
         gotoxy(63,24);cout << "Troco: R$" << pagamento - totalVendaProduto << endl;
         insereContaNaNota(totalVendaProduto, pagamento, quantidadeItens);
+        gotoxy(63,26);system("pause");
     }
-    bordaFunction();
-    gotoxy(63,21);cout << "Voltar ao menu de caixa? <s> ";
-    gotoxy(63,22);cin >> opcao;
 }
 
 void exibeFluxoDeCaixaCase(){
     char opcao;
     bordaFunction();
     exibeFluxoDeCaixa();
-    gotoxy(63,27);cout << "Voltar ao menu? <s>";
-    gotoxy(63,28);cin >> opcao;
+    gotoxy(63,26);system("pause");
 }
 

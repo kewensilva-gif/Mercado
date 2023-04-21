@@ -80,7 +80,7 @@ void pegaDados(struct estoque &produtos){
     gotoxy(63,22);
     cout << "Digite o nome do produto: ";
     gotoxy(63,24);
-    cin.ignore();
+    //cin.ignore();
     getline(cin, produtos.nome);
     bordaFunction();
 
@@ -246,8 +246,8 @@ void preencheFluxoCaixa(string nomeArq, float custo, float valorVenda, float luc
     fluxo.open(nomeArq);
 
     fluxo << "Custo total: R$" << custo << endl;
-    fluxo << "Valor total possível de vendas: R$" << valorVenda << endl;
-    fluxo << "Lucro possível: R$" << lucro << endl;
+    fluxo << "Valor total possivel de vendas: R$" << valorVenda << endl;
+    fluxo << "Lucro possivel: R$" << lucro << endl;
     fluxo << arquivo << endl;
 
     fluxo.close();
@@ -346,13 +346,20 @@ void exibeFluxoDeCaixa(){
 void visualizarEstoque(){
     string linha;
     ifstream produtosIn;
-    int num;
+    int num, j;
     num = 3;
+    j = 1;
     produtosIn.open("produtos.txt");
 
     if(produtosIn.is_open()){
         while(getline(produtosIn, linha)){
-            gotoxy(2, num++);cout << linha << endl;
+            if(linha == "**Produto**"){
+                num++;
+                gotoxy(2, num++);cout << "Produto " << j++ << endl ;
+
+            } else{
+                gotoxy(2, num++);cout << linha << endl;
+            }
         }
     }
 

@@ -1,20 +1,20 @@
 {
 	"produtos": [ 
 		{
-			"Nome": "feijao",
+			"Nome": "rroz",
 			"Quantidade": 1,
-			"Marca": "tio joao",
+			"Marca": "namorado",
 			"PrecoUnidade": 5.4,
-			"PrecoTotal": 5,
-			"id": 0
+			"PrecoTotal": 5.4,
+			"id": 3
 		}
 	],
 	"conta": [ 
 		{
 			"QuantidadeItens": 1,
-			"Total": 5,
+			"Total": 5.4,
 			"Entrada": 10,
-			"Troco": 5
+			"Troco": 4.6
 		}
 	]
 }
