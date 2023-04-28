@@ -19,6 +19,13 @@ public:
     float debito;
 };
 
+//Assinaturas
+void cadastrarCliente();
+void visualizarClientes();
+void excluir();
+void excluir(float* debito);
+
+
 void cadastrarCliente()
 {
     // Declaração e inicialização do objeto Cliente
