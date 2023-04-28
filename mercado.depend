@@ -59,7 +59,7 @@
 
 1681919196 d:\trabalho-prog2\mercado\switch_setas.h
 
-1682678855 source:d:\teste\mercado\main.cpp
+1682679338 source:d:\teste\mercado\main.cpp
 	<iostream>
 	<fstream>
 	<string.h>
@@ -70,8 +70,8 @@
 	"Cliente.h"
 	"libArquivos.h"
 	"libJSON.h"
-	"libTXT.h"
 	"libCaixa.h"
+	"libTXT.h"
 	"libCases.h"
 	"gconio.h"
 
@@ -100,7 +100,7 @@
 	<limits>
 	"gconio.h"
 
-1682678916 d:\teste\mercado\libarquivos.h
+1682679654 d:\teste\mercado\libarquivos.h
 	<stdlib.h>
 	<string.h>
 
@@ -108,7 +108,7 @@
 
 1682678780 d:\teste\mercado\libtxt.h
 
-1682678780 d:\teste\mercado\libcaixa.h
+1682679654 d:\teste\mercado\libcaixa.h
 
 1682678780 d:\teste\mercado\libcases.h
 

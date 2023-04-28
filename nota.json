@@ -1,20 +1,20 @@
 {
 	"produtos": [ 
 		{
-			"Nome": "rroz",
-			"Quantidade": 1,
-			"Marca": "namorado",
-			"PrecoUnidade": 5.4,
-			"PrecoTotal": 5.4,
-			"id": 3
+			"Nome": "carne",
+			"Quantidade": 2,
+			"Marca": "seara",
+			"PrecoUnidade": 21.6,
+			"PrecoTotal": 43.2,
+			"id": 0
 		}
 	],
 	"conta": [ 
 		{
-			"QuantidadeItens": 1,
-			"Total": 5.4,
-			"Entrada": 10,
-			"Troco": 4.6
+			"QuantidadeItens": 2,
+			"Total": 43.2,
+			"Entrada": 45,
+			"Troco": 1.8
 		}
 	]
 }

@@ -10,8 +10,8 @@
 #include "Cliente.h"
 #include "libArquivos.h"
 #include "libJSON.h"
-#include "libTXT.h"
 #include "libCaixa.h"
+#include "libTXT.h"
 #include "libCases.h"
 
 #include "gconio.h"

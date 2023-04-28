@@ -5,6 +5,14 @@ void dadosCaixaConta(ofstream& notaOut, float total, float entrada, int quantida
 void iniciaArquivo();
 void insereContaNaNota(float total, float entrada, int quantidade);
 
+void calculaCustoELucro(float& custo, float& totalVendas);
+void preencheFluxoCaixa(string nomeArq, float custo, float valorVenda, float lucro, string arquivo);
+void fluxoDeCaixa();
+void alteraValoresCaixa(struct estoque produtos);
+
+void preencheFluxoCaixaParcial(string nomeArq, float custo, float valorVenda, float lucro, string arquivo);
+void alteraValoresCaixaParcial(float venda, float custo);
+
 // Nota fiscal
 struct notaFiscal{
     string nome;
@@ -111,4 +119,204 @@ void insereContaNaNota(float total, float entrada, int quantidade){
 
     notaOut << "\t]\n}" << endl;
     notaOut.close();
+}
+
+
+//Calculo a partir do estoque
+
+void calculaCustoELucro(float& custo, float& totalVendas){
+    custo = totalVendas = 0;
+    string linha, acum;
+    int quant;
+    ifstream custoTotal;
+    custoTotal.open("produtos.txt");
+
+    if(custoTotal.is_open()){
+        while(getline(custoTotal, linha)){
+            if(linha[0] == 'Q'){
+                acum = "";
+                for(int i = 12; i < strlen(linha.c_str()); i++){
+                    acum += linha[i];
+                }
+
+                quant = stoi(acum);
+            }
+            if(linha[0] == 'C'){
+                acum = "";
+                for(int i = 7; i < strlen(linha.c_str()); i++){
+                    acum += linha[i];
+                }
+                custo += stof(acum) * quant;
+            }
+            if(linha[0] == 'V'){
+                acum = "";
+                for(int i = 7; i < strlen(linha.c_str()); i++){
+                    acum += linha[i];
+                }
+                totalVendas += stof(acum) * quant;
+            }
+        }
+    }
+
+    custoTotal.close();
+}
+
+void preencheFluxoCaixa(string nomeArq, float custo, float valorVenda, float lucro, string arquivo){
+    ofstream fluxo;
+
+    fluxo.open(nomeArq);
+
+    fluxo << "Custo total: R$" << custo << endl;
+    fluxo << "Valor total possivel de vendas: R$" << valorVenda << endl;
+    fluxo << "Lucro possivel: R$" << lucro << endl;
+    fluxo << arquivo << endl;
+
+    fluxo.close();
+}
+
+
+void fluxoDeCaixa(){
+    float custo, vendaTotalEstoque, lucroPossivel;
+
+    calculaCustoELucro(custo, vendaTotalEstoque);
+
+    lucroPossivel = vendaTotalEstoque - custo;
+
+    preencheFluxoCaixa("fluxoDeCaixa.txt", custo, vendaTotalEstoque, lucroPossivel, "\nTotal venda: R$0\nCusto dos produtos vendidos: R$0\nLucro em cima dos produtos vendidos: R$0");
+}
+
+void alteraValoresCaixa(struct estoque produtos){
+    string linha, valores, arquivo;
+    float val[3], lucro, custo, valorVendas;
+
+    bool entrou = false;
+    ifstream caixa;
+    caixa.open("fluxoDeCaixa.txt");
+
+    if(caixa.is_open()){
+        int j = 0;
+        int cont = 0;
+        while(getline(caixa, linha)){
+            if(cont >= 0 && cont < 3){
+                entrou = false;
+                valores = "";
+                for(int i = 0; i < strlen(linha.c_str()); i++){
+                    if(linha[i] == '$'){
+                        i++;
+                        entrou = true;
+                    }
+                    if(entrou){
+                        valores += linha[i];
+                    }
+                }
+
+            val[j] = stof(valores);
+
+            j++;
+            } else {
+                arquivo += linha + "\n";
+            }
+            cont++;
+        }
+    }
+
+    caixa.close();
+
+    custo = val[0] + (produtos.quant*produtos.custo);
+    valorVendas = val[1] + (produtos.quant*produtos.venda);
+    lucro = val[2] + (produtos.quant*produtos.venda - produtos.quant*produtos.custo);
+
+    preencheFluxoCaixa("fluxoDeCaixa.txt", custo, valorVendas, lucro, arquivo);
+}
+
+void pegaCustoEVenda(string strCusto, string strVenda, struct estoque produtos, bool check){
+    string val;
+
+    for(int i = 7; i < strlen(strCusto.c_str()); i++){
+        val += strCusto[i];
+    }
+    produtos.custo = stof(val);
+
+    val = "";
+    for(int i = 7; i < strlen(strVenda.c_str()); i++){
+        val += strVenda[i];
+    }
+    produtos.venda = stof(val);
+
+    if(check){
+        alteraValoresCaixa(produtos);
+    }
+}
+
+void exibeFluxoDeCaixa(){
+    string linha;
+    int y;
+    y = 18;
+    ifstream caixa;
+    caixa.open("fluxoDeCaixa.txt");
+
+    if(caixa.is_open()){
+        while(getline(caixa, linha)){
+            gotoxy(63,y++);cout << linha << endl;
+        }
+    }
+
+    caixa.close();
+}
+
+
+void preencheFluxoCaixaParcial(string nomeArq, float custo, float valorVenda, float lucro, string arquivo){
+    ofstream fluxo;
+
+    fluxo.open(nomeArq);
+    fluxo << arquivo;
+    fluxo << "Total venda: R$" << valorVenda << endl;
+    fluxo << "Custo dos produtos vendidos: R$" << custo << endl;
+    fluxo << "Lucro em cima dos produtos vendidos: R$" << lucro << endl;
+
+    fluxo.close();
+}
+
+void alteraValoresCaixaParcial(float venda, float custo){
+    string linha, valores, arquivo, linha2;
+    float val[3], lucroProdutosParcial, custoProdutosParcial, totalVendas;
+
+    bool entrou = false;
+    ifstream caixa;
+    caixa.open("fluxoDeCaixa.txt");
+
+    if(caixa.is_open()){
+        int j = 0, cont = 0;
+        while(getline(caixa, linha)){
+
+            if(cont > 3 && cont < 7){
+                entrou = false;
+                valores = "";
+                for(int i = 0; i < strlen(linha.c_str()); i++){
+                    if(linha[i] == '$'){
+                        i++;
+                        entrou = true;
+                    }
+                    if(entrou){
+                        valores += linha[i];
+                    }
+                }
+                val[j] = stof(valores);
+                j++;
+            } else if(cont <= 3){
+                arquivo += linha + "\n";
+            } else {
+                break;
+            }
+            cont++;
+        }
+    }
+    caixa.close();
+
+
+    custoProdutosParcial = val[1] + custo;
+    lucroProdutosParcial = val[2] + (venda - custo);
+    totalVendas = val[0] + venda;
+
+    preencheFluxoCaixaParcial("fluxoDeCaixa.txt", custoProdutosParcial, totalVendas, lucroProdutosParcial, arquivo);
 }

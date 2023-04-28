@@ -1,14 +1,7 @@
 **Produto**
-Nome: Feijao
-Quantidade: 6
-Marca: tio joao
-Custo: 3
-Venda: 5.4
+Nome: carne
+Quantidade: 1
+Marca: seara
+Custo: 12
+Venda: 21.6
 id: 0
-**Produto**
-Nome: Arroz
-Quantidade: 18
-Marca: namorado
-Custo: 2
-Venda: 3.6
-id: 1
