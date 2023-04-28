@@ -30,7 +30,7 @@ int main()
     int *FIM_DE_LINHA    = new(int);
     int * fim3 = new(int);
     *INICIO_DE_LINHA = 22;
-    *FIM_DE_LINHA    = 26;
+    *FIM_DE_LINHA    = 25;
 
     int opMain, opEst, opCad, opCaixa;
 
@@ -44,6 +44,7 @@ int main()
 
         switch(opMain){
         case 1:
+            *FIM_DE_LINHA = 26;
             do{
                 bordaFunction();
                 float debito;

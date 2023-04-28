@@ -7,7 +7,6 @@
 void pegaQuantLinhas(int& cont, string arquivo);
 void pegaDados(struct estoque &produtos);
 string pegaStringUltimoId();
-string pegaStringUltimoId();
 int converteId();
 void pegaValor(int id, float &venda, float &custo);
 
