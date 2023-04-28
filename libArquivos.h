@@ -79,9 +79,8 @@ void pegaDados(struct estoque &produtos){
 
     gotoxy(63,22);
     cout << "Digite o nome do produto: ";
-    gotoxy(63,24);
-    //cin.ignore();
-    getline(cin, produtos.nome);
+    cin.ignore();
+    gotoxy(63,24);getline(cin, produtos.nome);
     bordaFunction();
 
 

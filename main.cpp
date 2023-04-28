@@ -30,7 +30,7 @@ int main()
     int *FIM_DE_LINHA    = new(int);
     int * fim3 = new(int);
     *INICIO_DE_LINHA = 22;
-    *FIM_DE_LINHA    = 25;
+    *FIM_DE_LINHA    = 26;
 
     int opMain, opEst, opCad, opCaixa;
 

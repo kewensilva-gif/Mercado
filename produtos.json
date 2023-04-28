@@ -2,27 +2,19 @@
 	"produtos": [ 
 		{
 			"Nome": "Feijao",
-			"Quantidade": 20,
-			"Marca": "Tio Joao",
-			"Custo": 6,
-			"Venda": 10.8,
+			"Quantidade": 6,
+			"Marca": "tio joao",
+			"Custo": 3,
+			"Venda": 5.4,
 			"id": 0
 		},
 		{
-			"Nome": "Coca Cola",
-			"Quantidade": 46,
-			"Marca": "",
-			"Custo": 0,
-			"Venda": 0,
-			"id": 2
-		},
-		{
-			"Nome": "Coca cola",
-			"Quantidade": 28,
-			"Marca": "Coca cola",
-			"Custo": 5,
-			"Venda": 9,
-			"id": 3
+			"Nome": "Arroz",
+			"Quantidade": 18,
+			"Marca": "namorado",
+			"Custo": 2,
+			"Venda": 3.6,
+			"id": 1
 		}
 	]
 }

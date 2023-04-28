@@ -59,3 +59,56 @@
 
 1681919196 d:\trabalho-prog2\mercado\switch_setas.h
 
+1682678855 source:d:\teste\mercado\main.cpp
+	<iostream>
+	<fstream>
+	<string.h>
+	<windows.h>
+	"janela_window.h"
+	"switch_SETAS.h"
+	"libMain.h"
+	"Cliente.h"
+	"libArquivos.h"
+	"libJSON.h"
+	"libTXT.h"
+	"libCaixa.h"
+	"libCases.h"
+	"gconio.h"
+
+1682678780 d:\teste\mercado\janela_window.h
+	"gconio.h"
+	<iostream>
+
+1682678780 d:\teste\mercado\gconio.h
+	<stdio.h>
+	<conio.h>
+	<time.h>
+	<windows.h>
+	<sys/ioctl.h>
+	<unistd.h>
+	<termios.h>
+
+1682678780 d:\teste\mercado\switch_setas.h
+
+1682678780 d:\teste\mercado\libmain.h
+
+1682678780 d:\teste\mercado\cliente.h
+	<iostream>
+	<fstream>
+	<string>
+	<iomanip>
+	<limits>
+	"gconio.h"
+
+1682678916 d:\teste\mercado\libarquivos.h
+	<stdlib.h>
+	<string.h>
+
+1682678780 d:\teste\mercado\libjson.h
+
+1682678780 d:\teste\mercado\libtxt.h
+
+1682678780 d:\teste\mercado\libcaixa.h
+
+1682678780 d:\teste\mercado\libcases.h
+
