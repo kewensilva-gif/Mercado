@@ -1,12 +1,4 @@
 namespace json{
-    //Assinaturas
-    void dados(ofstream& produtosOut, struct estoque produtos);
-    void criarLista(struct estoque produtos);
-    void inserirProduto(struct estoque produtos);
-    void removerProduto(int id);
-    void modificaQuantidade(int id, int quant);
-
-
     // função que agrupa os dados que serão inseridos nos arquivos
     void dados(ofstream& produtosOut, struct estoque produtos){
         produtosOut << "\t\t\t\"Nome\": \"" << produtos.nome << "\","<< endl;

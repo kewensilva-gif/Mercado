@@ -1,11 +1,4 @@
 namespace txt{
-    //Assinaturas
-    void dados(ofstream& produtosOut, struct estoque produtos);
-    void criarLista(struct estoque produtos);
-    void inserirProduto(struct estoque produtos);
-    void removerProduto(int id);
-    void modificaQuantidade(int id, int quant);
-
     void dados(ofstream& produtosOut, struct estoque produtos){
         produtosOut << "**Produto**" << endl;
         produtosOut << "Nome: " << produtos.nome << endl;

@@ -59,7 +59,7 @@
 
 1681919196 d:\trabalho-prog2\mercado\switch_setas.h
 
-1682679338 source:d:\teste\mercado\main.cpp
+1682679855 source:d:\teste\mercado\main.cpp
 	<iostream>
 	<fstream>
 	<string.h>
@@ -92,7 +92,7 @@
 
 1682678780 d:\teste\mercado\libmain.h
 
-1682678780 d:\teste\mercado\cliente.h
+1682800536 d:\teste\mercado\cliente.h
 	<iostream>
 	<fstream>
 	<string>
@@ -104,9 +104,9 @@
 	<stdlib.h>
 	<string.h>
 
-1682678780 d:\teste\mercado\libjson.h
+1682800385 d:\teste\mercado\libjson.h
 
-1682678780 d:\teste\mercado\libtxt.h
+1682800394 d:\teste\mercado\libtxt.h
 
 1682679654 d:\teste\mercado\libcaixa.h
 

@@ -167,7 +167,7 @@ void excluir()
 void excluir(float* debito)
 
 {
-
+    bordaFunction();
     string nomeClienteAtualizar;
     int idClienteAtualizar; // Adicionar variável para o ID do cliente
     gotoxy(63,22);cout << "Informe o ID do cliente a ser atualizado: "; // Solicitar também o ID do cliente
