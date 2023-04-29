@@ -19,13 +19,6 @@ public:
     float debito;
 };
 
-//Assinaturas
-void cadastrarCliente();
-void visualizarClientes();
-void excluir();
-void excluir(float* debito);
-
-
 void cadastrarCliente()
 {
     // Declaração e inicialização do objeto Cliente
@@ -167,15 +160,17 @@ void excluir()
 void excluir(float* debito)
 
 {
-    bordaFunction();
+
     string nomeClienteAtualizar;
     int idClienteAtualizar; // Adicionar variável para o ID do cliente
+    bordaFunction();
     gotoxy(63,22);cout << "Informe o ID do cliente a ser atualizado: "; // Solicitar também o ID do cliente
     gotoxy(63,23);cin >> idClienteAtualizar; // Ler o ID do cliente
-    //cin.ignore(); // Limpar o buffer do teclado
+    cin.ignore(); // Limpar o buffer do teclado
     bordaFunction();
-    gotoxy(63,22);cout << "Informe o nome do cliente para atualizar o débito: ";
-    gotoxy(63,23);getline(cin, nomeClienteAtualizar);
+    gotoxy(63,22);cout << "Informe o nome do cliente";
+    gotoxy(63,23);cout << "para atualizar o debito: ";
+    gotoxy(63,24);getline(cin, nomeClienteAtualizar);
 
     // Abrir arquivo de clientes em modo de leitura
     ifstream arquivoClientes("clientes.txt");
@@ -204,8 +199,10 @@ void excluir(float* debito)
 
             // Solicitar ao usuário a quantidade a ser atualizada
             float valorAtualizar;
-            cout << "Informe a quantidade a ser atualizada para o cliente " << nomeClienteAtualizar << ": ";
-            cin >> valorAtualizar;
+            bordaFunction();
+            gotoxy(63,22);cout << "Informe a quantidade a ser";
+            gotoxy(63,23);cout << "atualizada para o cliente " << nomeClienteAtualizar << ": ";
+            gotoxy(63,24);cin >> valorAtualizar;
 
             // Atualizar o débito
             *debito += valorAtualizar;
@@ -232,13 +229,13 @@ void excluir(float* debito)
     if (clienteEncontrado)
     {
         bordaFunction();
-        gotoxy(63,22);cout << "Débito do cliente atualizado com sucesso!" << endl;
+        gotoxy(63,22);cout << "Debito do cliente atualizado com sucesso!" << endl;
         Sleep(1000);
     }
     else
     {
         bordaFunction();
-        gotoxy(63,22);cout << "Cliente não encontrado." << endl;
+        gotoxy(63,22);cout << "Cliente nao encontrado." << endl;
         Sleep(1000);
     }
 }

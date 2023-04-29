@@ -1,12 +1,28 @@
 {
 	"produtos": [ 
 		{
-			"Nome": "carne",
-			"Quantidade": 1,
-			"Marca": "seara",
-			"Custo": 12,
-			"Venda": 21.6,
+			"Nome": "Feijao",
+			"Quantidade": 15,
+			"Marca": "Tio Joao",
+			"Custo": 7,
+			"Venda": 12.6,
 			"id": 0
+		},
+		{
+			"Nome": "Arroz",
+			"Quantidade": 29,
+			"Marca": "Namorado",
+			"Custo": 2,
+			"Venda": 3.6,
+			"id": 1
+		},
+		{
+			"Nome": "arne",
+			"Quantidade": 18,
+			"Marca": "seara",
+			"Custo": 18,
+			"Venda": 32.4,
+			"id": 2
 		}
 	]
 }
